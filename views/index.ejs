@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<% if (
+    person.candidateName !== null && typeof person.candidateName !== 'undefined'
+  ) {
+    title = person.candidateName.native;
+    if (person.candidateName.hasOwnProperty('transliterated')) {
+      title += ' / ' + person.candidateName.transliterated;
+    }
+  }
+%>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/style.css"
+    >
+    <link
+      href='https://fonts.googleapis.com/css?family=Open+Sans:300'
+      rel='stylesheet' type='text/css'
+    >
+  </head>
+  <body>
+    <div class="container" id="just-for-debugging">
+      <h1><%= title %></h1>
+      <h2>Approximate Location <%= person.globe %></h2>
+      With coordinates at <%= person.latitude %> <%= person.longitude %>,
+      this person is likely from <%= person.flag %> <%= person.country %>
+      <% if (person.hasOwnProperty('countryNative') &&
+          person.countryNative !== 'none') {
+      %>
+        (<%= person.countryNative %>)
+      <% } %>,
+      country code <%= person.countryCode %>.
+      <h3>Nearest Cities</h3>
+      From <%= person.latitude %> <%= person.longitude %>, the closest
+      five cities found in the database are...
+      <br>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Lat</th>
+          <th>Long</th>
+          <th>Country</th>
+          <th>District</th>
+          <th>Distance</th>
+        </tr>
+        <% for(var i = 0; i < person.cities.length; i++) { %>
+          <tr>
+            <td><%= person.cities[i].name %></td>
+            <td class="cell-num"><%= person.cities[i].latitude %>°</td>
+            <td class="cell-num"><%= person.cities[i].longitude %>°</td>
+            <td><%= person.cities[i].country %></td>
+            <td><%= person.cities[i].adminCode %></td>
+            <td><%= person.cities[i].distance %></td>
+          </tr>
+        <% } %>
+      </table>
+      <h3>General Information</h3>
+      This person is probably
+      <% if (person.gender.hasOwnProperty('sexuality') ||
+          person.gender.hasOwnProperty('presentation')) { %>
+          <%= person.gender.flag %>
+      <% } %>
+      <% if (person.gender.hasOwnProperty('presentation')) { %>
+        a <%= person.gender.presentation.name %>
+        (<%= person.gender.presentation.value %>%)
+      <% } %>
+      <%= person.gender.name %>
+      (<%= person.gender.symbol %>),
+      <% if (person.gender.hasOwnProperty('sexuality')) { %>
+        <%= person.gender.sexuality %>,
+      <% } %>
+      age <%= person.age %>.
+      Like
+      <% if (person.denomination !== null) { %>
+        approximately <%= person.denomination.population %>%
+        of the country, they are <%= person.denomination.name %>
+        <% if (person.denomination.emoji !== null) { %>
+          (<%= person.denomination.emoji %>)
+        <% } %>
+        and like
+      <% } %>
+      <%= person.ethnicity.population %>% of the country, identifies
+      as <%= person.ethnicity.name %>.  In the region, the average
+      skin color tends to be roughly similar to
+      <span
+        class="swatch"
+        style="background-color: <%= person.skinColor.color %>;"
+      >
+        <code><%= person.skinColor.color %></code>
+      </span>
+      <%= person.skinColor.emoji %>.
+      <br>
+      <% var impairmentLength = person.physicalImpairments.length; %>
+      <% if (impairmentLength > 0) { %>
+        They're living with
+        <% var last = person.physicalImpairments.pop(); %>
+        <% if (person.physicalImpairments.length > 0) { %>
+          <%= person.physicalImpairments.map(
+              i => `${i.name} (${i.population}%)`
+            ).join(', ')
+          %>
+          and <%= last.name %> (<%= last.population %>%)
+        <% } else { %>
+          <%= last.name %> (<%= last.population %>%)
+        <% } %>
+        impairments
+      <% } %>
+      <% if (person.psychologicalImpairments.length > 0) { %>
+        <% if (impairmentLength > 0) { %>
+          and
+        <% } else { %>
+          They're
+        <% } %>
+        coping with
+        <% var last = person.psychologicalImpairments.pop(); %>
+        <% if (person.psychologicalImpairments.length > 0) { %>
+          <%= person.psychologicalImpairments.map(
+              i => `${i.name} (${i.population}%)`
+            ).join(', ') %>
+          and <%= last.name %> (<%= last.population %>).
+        <% } else { %>
+          <%= last.name %> (<%= last.population %>%).
+        <% } %>
+      <% } %>
+      <br>
+      <% var languages = person.languages.length; %>
+      <% if (languages > 0) { %>
+        They speak
+        <% var last = person.languages.pop(); %>
+        <% if (person.languages.length > 0) { %>
+          <%= person.languages.map(
+              i => `${i.name} (${i.population}%)`
+            ).join(', ')
+          %>
+          and <%= last.name %> (<%= last.population %>%)
+        <% } else { %>
+          <%= last.name %> (<%= last.population %>%)
+        <% } %>
+      <% } %>
+      <% if (languages > 0
+          && person.hasOwnProperty('literacy')) { %>
+        and are also
+      <% } else { %>
+        <% if (person.hasOwnProperty('literacy')) { %>
+          They're
+        <% } %>
+      <% } %>
+      <% if (person.hasOwnProperty('literacy')) { %>
+        literate (<%= person.literacy %>).
+      <% } %>
+      <br>
+      <p>
+        <small>Please see
+        <a href="https://github.com/jcolag/background-generator">
+          the project README
+        </a>
+        for an attempt to explain all the details that look strange.
+        There are a <i>lot</i> of caveats, here.
+      </p>
+      <hr>
+      If you want to save the data for this person, the following is the
+      JSON object used to fill in the above.
+      <textarea>
+<%- JSON.stringify(person, ' ', 2) %>
+      </textarea>
+    </div>
+  </body>
+</html>

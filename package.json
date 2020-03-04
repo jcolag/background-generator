@@ -1,0 +1,29 @@
+{
+  "name": "background-generator",
+  "version": "1.0.0",
+  "description": "A simple web application to provide semi-believable background details for fictional characters",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "find-nearest-cities": "^1.0.0",
+    "unidecode-plus": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcolag/background-generator.git"
+  },
+  "author": "John Colagioia",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jcolag/background-generator/issues"
+  },
+  "homepage": "https://github.com/jcolag/background-generator#readme"
+}
