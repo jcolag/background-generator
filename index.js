@@ -1,8 +1,10 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const fs = require('fs');
 const PeopleGenerator = require('./generate.js');
 const app = express();
 const people = new PeopleGenerator();
+const config = JSON.parse(fs.readFileSync('./config.json'));
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,6 +14,7 @@ app.get('/', function (req, res) {
   person = people.generate();
   res.render('index', {
     person: person[0],
+    mapboxToken: config.mapboxToken,
     title: 'A Hypothetical Person',
   });
 });

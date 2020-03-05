@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<% if (
-    person.candidateName !== null && typeof person.candidateName !== 'undefined'
-  ) {
+<% if (person.hasOwnProperty('candidateName')) {
     title = person.candidateName.native;
     if (person.candidateName.hasOwnProperty('transliterated')) {
       title += ' / ' + person.candidateName.transliterated;
@@ -21,19 +19,67 @@
       href='https://fonts.googleapis.com/css?family=Open+Sans:300'
       rel='stylesheet' type='text/css'
     >
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <script>
+      window.onload = function() {
+        var citiesJson = "<%= JSON.stringify(person.cities) %>"
+          .replace(/&#34;/g, '"');
+        var cities = JSON.parse(citiesJson);
+        var map = L
+          .map('map')
+          .setView([<%= person.coordinates %>], 8);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: '<%= mapboxToken %>'
+        }).addTo(map);
+        L.marker([<%= person.coordinates %>])
+          .addTo(map)
+          .bindPopup('<%=person.latitude%> <%=person.longitude%>')
+          .openPopup();
+        for (var i=0; i<cities.length; i++) {
+          var city = cities[i];
+          var circle = L.circle([city.latitude, city.longitude], {
+            color: '#b780a0',
+            fillColor: '#95557a',
+            fillOpacity: 0.5,
+            radius: 100 * Number(city.distance.replace('km', '')),
+          }).addTo(map);
+          circle.bindPopup(city.name);
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="container" id="just-for-debugging">
       <h1><%= title %></h1>
       <h2>Approximate Location <%= person.globe %></h2>
       With coordinates at <%= person.latitude %> <%= person.longitude %>,
-      this person is likely from <%= person.flag %> <%= person.country %>
+      this person
+      <% if (person.hasOwnProperty('candidateName')) { %>
+        (<%= title %>)
+      <% } %>
+      is likely from <%= person.flag %> <%= person.country %>
       <% if (person.hasOwnProperty('countryNative') &&
           person.countryNative !== 'none') {
       %>
         (<%= person.countryNative %>)
       <% } %>,
       country code <%= person.countryCode %>.
+      <div id="map"></div>
       <h3>Nearest Cities</h3>
       From <%= person.latitude %> <%= person.longitude %>, the closest
       five cities found in the database are...
@@ -66,6 +112,7 @@
       <% } %>
       <% if (person.gender.hasOwnProperty('presentation')) { %>
         a <%= person.gender.presentation.name %>
+        <%= person.gender.presentation.symbol %>
         (<%= person.gender.presentation.value %>%)
       <% } %>
       <%= person.gender.name %>
@@ -77,7 +124,8 @@
       Like
       <% if (person.denomination !== null) { %>
         approximately <%= person.denomination.population %>%
-        of the country, they are <%= person.denomination.name %>
+        of the country, they are or practice some form of
+        <%= person.denomination.name %>
         <% if (person.denomination.emoji !== null) { %>
           (<%= person.denomination.emoji %>)
         <% } %>
@@ -96,7 +144,7 @@
       <br>
       <% var impairmentLength = person.physicalImpairments.length; %>
       <% if (impairmentLength > 0) { %>
-        They're living with
+        They're living with ♿
         <% var last = person.physicalImpairments.pop(); %>
         <% if (person.physicalImpairments.length > 0) { %>
           <%= person.physicalImpairments.map(
@@ -115,7 +163,7 @@
         <% } else { %>
           They're
         <% } %>
-        coping with
+        coping with 🧠
         <% var last = person.psychologicalImpairments.pop(); %>
         <% if (person.psychologicalImpairments.length > 0) { %>
           <%= person.psychologicalImpairments.map(

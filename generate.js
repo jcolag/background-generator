@@ -184,6 +184,7 @@ class PeopleGenerator {
 
       output.latitude = `${Math.abs(zeroLat - lat)}${ns}`;
       output.longitude = `${Math.abs(zeroLong - long)}${ew}`;
+      output.coordinates = [zeroLat - lat, long - zeroLong];
       output.globe = globe;
       output.country = country;
       output.flag = flag;
@@ -569,7 +570,8 @@ class PeopleGenerator {
     ];
     const genderPct = [
       {
-        'name': 'transgender ⚧️',
+        'name': 'transgender',
+        'symbol': '⚧️ 🏳️‍⚧️',
         'value': 0.58,
       },
       {
