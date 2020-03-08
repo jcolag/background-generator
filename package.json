@@ -8,6 +8,7 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "find-nearest-cities": "^1.0.0",
+    "helmet": "^3.21.3",
     "unidecode-plus": "^1.0.2"
   },
   "devDependencies": {},

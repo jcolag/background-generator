@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const fs = require('fs');
+var https = require('https');
 const PeopleGenerator = require('./generate.js');
 const app = express();
 const people = new PeopleGenerator();
@@ -8,6 +9,7 @@ const config = JSON.parse(fs.readFileSync('./config.json'));
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(require('helmet')());
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
@@ -19,11 +21,17 @@ app.get('/', function (req, res) {
   });
 });
 
-app.post('/', function (req, res) {
-  res.render('index');
-  console.log(req.body.city);
-});
-
-app.listen(5000, function () {
-  console.log('Example app listening on port 5000!');
-});
+try {
+  https
+    .createServer({
+      key: fs.readFileSync('keys/key.pem'),
+      cert: fs.readFileSync('keys/cert.pem')
+    }, app)
+    .listen(5000, function () {
+      console.log('Example app listening on HTTPS port 5000!');
+    });
+} catch {
+  app.listen(5000, function () {
+      console.log('HTTPS failed; example app listening on HTTP port 5000!');
+    });
+}

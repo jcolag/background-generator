@@ -1,9 +1,35 @@
 # background-generator
-A simple web application to provide semi-believable background details for fictional characters
+
+This is a simple web application to provide semi-believable background details for fictional characters.
 
 As I described in the [Procedural Stories](https://github.com/jcolag/ProceduralStories) repository, an obvious problem in creating characters is in diversifying backgrounds, especially when it's far easier to assume that everybody looks like one's neighbors.  American sitcoms come to mind as a strong example, where a viewer can still somehow watch a show set in an urban center where ten out of ten people just happen to be white people in their twenties.
 
 This tool, adapting that work, guesses at a random person on Earth, to take advantage of the full scope of diversity on the planet.
+
+Unless something is broken, you should be able to try this out at <https://colagioia.net:5000>.
+
+## Installation
+
+To set this server up to run over HTTPS, you have two options, depending on where you're running.  If it's running on your local computer---and possibly your network, depending on your browser configuration---you'll want a self-signed certificate.
+
+```sh
+mkdir keys
+cd keys
+openssl req -nodes -new -x509 -keyout key.pem -out cert.pem
+```
+
+If it's on a real server, you'll need a real certificate, probably using Let's Encrypt, since it's free, but feel free to use any certificate instead.
+
+```
+certbot --webroot -w ./static -d domain.tld
+ln -s /path/to/domain/keys keys
+```
+
+You'll need to replace `domain.tld` and `/path/to/domain/keys` to whatever directory contains your key and certificate.
+
+If you can get this to run proxied behind a more general server like Apache, please file a pull request describing the process.  I was unable to get it working.
+
+## Explanation and (Many) Caveats
 
 In short, the program uses a population density map from Columbia University's [SEDAC](http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev10/data-download) to find a random latitude and longitude, then uses that information to find the country best represented by that location and the five nearest cities.
 
