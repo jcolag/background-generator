@@ -37,7 +37,7 @@
         var cities = JSON.parse(citiesJson);
         var map = L
           .map('map')
-          .setView([<%= person.coordinates %>], 8);
+          .setView([<%= person.coordinates %>], 13);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
           attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
           maxZoom: 18,
@@ -46,10 +46,11 @@
           zoomOffset: -1,
           accessToken: '<%= mapboxToken %>'
         }).addTo(map);
-        L.marker([<%= person.coordinates %>])
+        var marker = L.marker([<%= person.coordinates %>])
           .addTo(map)
           .bindPopup('<%=person.latitude%> <%=person.longitude%>')
           .openPopup();
+        var markers = [marker];
         for (var i=0; i<cities.length; i++) {
           var city = cities[i];
           var circle = L.circle([city.latitude, city.longitude], {
@@ -59,7 +60,10 @@
             radius: 100 * Number(city.distance.replace('km', '')),
           }).addTo(map);
           circle.bindPopup(city.name);
+          markers.push(circle);
         }
+        var group = L.featureGroup(markers);
+        map.fitBounds(group.getBounds());
       }
     </script>
   </head>
@@ -207,7 +211,8 @@
           the project README
         </a>
         for an attempt to explain all the details that look strange.
-        There are a <i>lot</i> of caveats, here.
+        There are a <i>lot</i> of caveats, here, even ignoring the
+        terrible templated grammar.
       </p>
       <hr>
       If you want to save the data for this person, the following is the
