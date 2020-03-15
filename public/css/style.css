@@ -64,6 +64,23 @@ tr:nth-child(odd) {
   padding-bottom: 0.25em;
 }
 
+.hostinfo {
+  height: 72px;
+  line-height: 72px;
+  text-align: center;
+}
+
+.hostinfo span {
+  display: inline-block;
+  line-height: 72px;
+  margin-bottom: 56px;
+  vertical-align: middle;
+}
+
+.hostlogo {
+  height: 72px;
+}
+
 #map {
   height: 60vw;
   width: 100%;
