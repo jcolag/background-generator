@@ -102,7 +102,14 @@
             <td><%= person.cities[i].name %></td>
             <td class="cell-num"><%= person.cities[i].latitude %>°</td>
             <td class="cell-num"><%= person.cities[i].longitude %>°</td>
-            <td><%= person.cities[i].country %></td>
+            <td>
+              <%= person.cities[i].country %>
+              <%= Array.from(person.cities[i].country.toUpperCase())
+                    .map(l => String.fromCodePoint(
+                      l.toLowerCase().charCodeAt() + 127365)
+                    ).join('')
+              %>
+            </td>
             <td><%= person.cities[i].adminCode %></td>
             <td><%= person.cities[i].distance %></td>
           </tr>
