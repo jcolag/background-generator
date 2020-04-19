@@ -24,14 +24,15 @@ app.get('/', function (req, res) {
 try {
   https
     .createServer({
-      key: fs.readFileSync('keys/key.pem'),
+      key: fs.readFileSync('keys/privkey.pem'),
       cert: fs.readFileSync('keys/cert.pem')
     }, app)
     .listen(5000, function () {
       console.log('Example app listening on HTTPS port 5000!');
     });
-} catch {
+} catch(e) {
+  console.warn(e);
   app.listen(5000, function () {
-      console.log('HTTPS failed; example app listening on HTTP port 5000!');
-    });
+    console.log('HTTPS failed; example app listening on HTTP port 5000!');
+  });
 }

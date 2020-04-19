@@ -104,9 +104,10 @@
             <td class="cell-num"><%= person.cities[i].longitude %>°</td>
             <td>
               <%= person.cities[i].country %>
-              <%= Array.from(person.cities[i].country.toUpperCase())
+              <%= Array.from(person.cities[i].country.toLowerCase())
                     .map(l => String.fromCodePoint(
-                      l.toLowerCase().charCodeAt() + 127365)
+                        l.charCodeAt() + 127365
+                      )
                     ).join('')
               %>
             </td>

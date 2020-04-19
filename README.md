@@ -10,15 +10,19 @@ Unless something is broken, you should be able to try this out at <https://colag
 
 ## Installation
 
+There isn't *much* to configure, here, but there's a bit.
+
+### Secure HTTP
+
 To set this server up to run over HTTPS, you have two options, depending on where you're running.  If it's running on your local computer---and possibly your network, depending on your browser configuration---you'll want a self-signed certificate.
 
 ```sh
 mkdir keys
 cd keys
-openssl req -nodes -new -x509 -keyout key.pem -out cert.pem
+openssl req -nodes -new -x509 -keyout privkey.pem -out cert.pem
 ```
 
-If it's on a real server, you'll need a real certificate, probably using Let's Encrypt, since it's free, but feel free to use any certificate instead.
+If it's on a real server, you'll need a real certificate, probably using [Let's Encrypt](https://letsencrypt.org/) and looking up how to install `certbot` on your own time, since it's free, but feel free to use any certificate instead.
 
 ```
 certbot --webroot -w ./static -d domain.tld
@@ -28,6 +32,16 @@ ln -s /path/to/domain/keys keys
 You'll need to replace `domain.tld` and `/path/to/domain/keys` to whatever directory contains your key and certificate.
 
 If you can get this to run proxied behind a more general server like Apache, please file a pull request describing the process.  I was unable to get it working.
+
+### Maps
+
+If you want the maps to display properly, you'll need to create a [Mapbox](https://www.mapbox.com/) account, generate an API key, and paste it into the `config.json` file as the value to `mapboxToken`.
+
+### Adding a Footer
+
+If you want to include additional information on the page, you can optionally create `views/_footer.ejs` with the required text and `public/css/footer.css` for any styling that the footer might need.
+
+The background generator will *only* use the files if it finds them, so there's no need to bother with this if you don't need it.
 
 ## Explanation and (Many) Caveats
 
@@ -69,7 +83,4 @@ Names are only the barest recommendation, relying on the data (but not the API, 
 
 At some point, it might be worth investigating how to navigate and parse Wiktionary's [names by language](https://en.wiktionary.org/wiki/Category:Names_subcategories_by_language) category.  It would probably require another layer of mapping data and a fair amount of work, but would improve the chances of names sounding credible to native ears.
 
-In cases where the writing system isn't strictly the Latin alphabet, the name will also be transliterated, shown along the lines of `"康 肖" (Kang  Xiao)`.  Like many aspects, here, it's not advisable to take those results as anything more than a starting point, specifically since transliterations of Semitic languages won't include most vowels and the transliteration library doesn't seem to care about any difference between Chinese logograms and Japanese kanji, producing unpleasant results there--`"مهسا حسنی" (mhs Hsny)` (should be *Mahsa Hassani*) or `"直子 高橋" (Zhi Zi  Gao Qiao)` (should be *Naoko Takahashi*)--and probably in other writing systems.
-
-Perhaps noteworthy, the specific project I had in mind for this script involved a world where much of the Northern Hemisphere is irrelevant, so it's designed to be tuned for the Global South.  To that end, the program has a variable and a command-line parameter to set the northernmost latitude.
-
+In cases where the writing system isn't strictly the Latin alphabet, the name will also be transliterated, shown along the lines of `"康 肖" (Kang  Xiao)`.  Like many aspects, here, it's not advisable to take those results as anything more than a starting point, specifically since transliterations of Semitic languages won't include most vowels and the transliteration library doesn't seem to care about any difference between Chinese logograms and Japanese kanji, producing unpleasant results there---`"مهسا حسنی" (mhs Hsny)` (should be *Mahsa Hassani*) or `"直子 高橋" (Zhi Zi  Gao Qiao)` (should be *Naoko Takahashi*)---and probably in other writing systems that I haven't noticed.

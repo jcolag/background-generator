@@ -60,11 +60,19 @@ class PeopleGenerator {
     // Algeria, the 179th column appears to be the Prime Meridian.  And
     // 80x179 looks a lot like where one would expect Null Island.
 
-    const zeroLat = 80;
-    const zeroLong = 179;
+    // EXCEPT...Those numbers only sometimes seem at all close.  By
+    // picking a dozen of extreme locations (Florida, Hawaii, Japan,
+    // Tamil Nadu, Madagascar, Italy, Ireland, and so forth), we
+    // can adjust 86x181 as 0N 0E, which still looks pretty cloase.
+    // I'm sure there are still going to be a lot of places where
+    // the cooridinates are hilariously wrong, but this seems a lot
+    // closer overall.
+
+    const zeroLat = 86;
+    const zeroLong = 181;
 
     // We may want to ignore the upper latitudes for some projects.
-    let maxLat = 80;
+    let maxLat = 86;
 
     if (process.argv.length > 3) {
       maxLat = Number(process.argv[3]);
@@ -609,7 +617,7 @@ class PeopleGenerator {
   }
 
   getRandomNameForCitizenOf(country, gender, uiNames) {
-    const g = gender.name.toUpperCase() === 'M' ? 'male' : 'female';
+    const g = gender.name.toUpperCase()[0] === 'M' ? 'male' : 'female';
     const countries = uiNames
       .filter(u =>
         u.region.indexOf(country) >= 0 ||
