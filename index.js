@@ -6,6 +6,8 @@ const PeopleGenerator = require('./generate.js');
 const app = express();
 const people = new PeopleGenerator();
 const config = JSON.parse(fs.readFileSync('./config.json'));
+const useFooter = fs.existsSync('./views/_footer.ejs');
+const useFooterStyle = fs.existsSync('./public/css/footer.css');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,9 +17,11 @@ app.set('view engine', 'ejs');
 app.get('/', function (req, res) {
   person = people.generate();
   res.render('index', {
-    person: person[0],
     mapboxToken: config.mapboxToken,
+    person: person[0],
     title: 'A Hypothetical Person',
+    useFooter: useFooter,
+    useFooterStyle: useFooterStyle,
   });
 });
 

@@ -15,9 +15,17 @@
       type="text/css"
       href="/css/style.css"
     >
+    <% if (useFooterStyle) { %>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="/css/footer.css"
+      >
+    <% } %>
     <link
       href='https://fonts.googleapis.com/css?family=Open+Sans:300'
-      rel='stylesheet' type='text/css'
+      rel='stylesheet'
+      type='text/css'
     >
     <link
       rel="stylesheet"
@@ -59,7 +67,13 @@
             fillOpacity: 0.5,
             radius: 100 * Number(city.distance.replace('km', '')),
           }).addTo(map);
-          circle.bindPopup(city.name);
+          var clat = Math.abs(city.latitude).toString() + (
+            city.latitude < 0 ? 'S' : 'N'
+          );
+          var clon = Math.abs(city.longitude).toString() + (
+            city.longitude < 0 ? 'W' : 'E'
+          );
+          circle.bindPopup(`${city.name}<br>${clat} ${clon}`);
           markers.push(circle);
         }
         var group = L.featureGroup(markers);
@@ -68,7 +82,7 @@
     </script>
   </head>
   <body>
-    <div class="container" id="just-for-debugging">
+    <div class="container">
       <h1><%= title %></h1>
       <h2>Approximate Location <%= person.globe %></h2>
       With coordinates at <%= person.latitude %> <%= person.longitude %>,
@@ -229,5 +243,13 @@
 <%- JSON.stringify(person, ' ', 2) %>
       </textarea>
     </div>
+
+    <% if (useFooter) { %>
+      <br>
+      <div class="container">
+        <hr>
+        <%- include('_footer.ejs') %>
+      </div>
+    <% } %>
   </body>
 </html>
