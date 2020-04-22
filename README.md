@@ -8,6 +8,12 @@ This tool, adapting that work, guesses at a random person on Earth, to take adva
 
 Unless something is broken, you should be able to try this out at <https://colagioia.net:5000>.
 
+## Licensing Note
+
+Because the AGPL requires the offer to publish *all* code, the `config.json` file is released under the terms of the [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/), so that any private keys you might put there aren't at risk by some jerk trying to break the system.
+
+[This article](https://write.emacsen.net/breaking-the-agpl) starts to explain the problem, but never quite lands where I think it needs to be.
+
 ## Installation
 
 There isn't *much* to configure, here, but there's a bit.
