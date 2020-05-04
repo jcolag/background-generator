@@ -2,12 +2,15 @@ const fs = require('fs');
 const nearestCities = require('find-nearest-cities');
 const unidecode = require('unidecode-plus');
 
+const Data = require('./data');
+const data = new Data();
+
 class PeopleGenerator {
   generate(people = 1) {
     const peopleList = [];
-    const population = this.loadGrid('population_density_deg.csv');
-    const countries = this.loadGrid('country_deg.csv');
-    var skinTones = this.loadGrid('skintones.csv');
+    const population = data.loadGrid('population_density_deg.csv');
+    const countries = data.loadGrid('country_deg.csv');
+    var skinTones = data.loadGrid('skintones.csv');
     const ciafact = JSON.parse(fs.readFileSync('factbook.json'));
     const countrycodes = {};
     const skinTonesR = skinTones.reverse().slice(1);
@@ -324,20 +327,6 @@ class PeopleGenerator {
     }
 
     return peopleList;
-  }
-
-  loadGrid(filename) {
-    const result = [];
-    const lines = fs
-      .readFileSync(filename)
-      .toString()
-      .split('\n');
-
-    for (let i = 0; i < lines.length; i++) {
-      result.push(lines[i].split(','));
-    }
-
-    return result;
   }
 
   chooseRandom(list) {
