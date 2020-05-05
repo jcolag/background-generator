@@ -1,6 +1,6 @@
 # background-generator
 
-This is a simple web application to provide semi-believable background details for fictional characters.
+This is a simple web application to provide semi-believable background details for fictional characters.  The now-official name is **CPREP**, ***C**haracter **P**rofile and **R**ecorded **E**vents (**P**rovisional)*.
 
 As I described in the [Procedural Stories](https://github.com/jcolag/ProceduralStories) repository, an obvious problem in creating characters is in diversifying backgrounds, especially when it's far easier to assume that everybody looks like one's neighbors.  American sitcoms come to mind as a strong example, where a viewer can still somehow watch a show set in an urban center where ten out of ten people just happen to be white people in their twenties.
 
@@ -10,7 +10,15 @@ Unless something is broken, you should be able to try this out at <https://colag
 
 ## Licensing Note
 
-Because the AGPL requires the offer to publish *all* code, the `config.json` file is released under the terms of the [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/), so that any private keys you might put there aren't at risk by some jerk trying to break the system.
+This project uses some code made available under the [MIT License](https://opensource.org/licenses/MIT), obliging its inclusion:
+
+ > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ >
+ > The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ >
+ > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Additionally, because the AGPL requires the offer to publish *all* code, the `config.json` file is released under the terms of the [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/), so that any private keys you might put there aren't at risk by some jerk trying to break the system.
 
 [This article](https://write.emacsen.net/breaking-the-agpl) starts to explain the problem, but never quite lands where I think it needs to be.
 
@@ -90,3 +98,5 @@ Names are only the barest recommendation, relying on the data (but not the API, 
 At some point, it might be worth investigating how to navigate and parse Wiktionary's [names by language](https://en.wiktionary.org/wiki/Category:Names_subcategories_by_language) category.  It would probably require another layer of mapping data and a fair amount of work, but would improve the chances of names sounding credible to native ears.
 
 In cases where the writing system isn't strictly the Latin alphabet, the name will also be transliterated, shown along the lines of `"康 肖" (Kang  Xiao)`.  Like many aspects, here, it's not advisable to take those results as anything more than a starting point, specifically since transliterations of Semitic languages won't include most vowels and the transliteration library doesn't seem to care about any difference between Chinese logograms and Japanese kanji, producing unpleasant results there---`"مهسا حسنی" (mhs Hsny)` (should be *Mahsa Hassani*) or `"直子 高橋" (Zhi Zi  Gao Qiao)` (should be *Naoko Takahashi*)---and probably in other writing systems that I haven't noticed.
+
+For the personalities, the code simply picks a random day of the year (always 1999 to avoid leap years) and a random year out of the twelve-year Chinese cycle.  Personality keywords are based on astrological interpretations, so---obviously---your mileage may vary.  You can make fun if you like, but it's a straightforward system that turns a couple of numbers into a set of categories a person is supposed to fit.
