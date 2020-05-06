@@ -1,0 +1,488 @@
+{
+  "chineseElement": [
+    {
+      "description": "The wood person has high morals, is self-confident, expansive and co-operative, with wide and varied interests and idealistic goals. The direction associated with Wood is East, and the season is spring, which makes it the fixed element for the animal signs Tiger and Rabbit",
+      "keywords": [
+        "strong",
+        "confident",
+        "cooperative",
+        "initiative",
+        "compassionate",
+        "imaginative",
+        "stressed",
+        "varied interests",
+        "idealistic"
+      ],
+      "name": "Wood"
+    },
+    {
+      "description": "The fire person has leadership qualities, dynamic passion, and is decisive, self-confident, positive and assertive. The direction associated with Fire is South, and the season is summer, which makes it the fixed element for the animal signs Snake and Horse.",
+      "keywords": [
+        "assertive",
+        "perceptive",
+        "leadership",
+        "zealous",
+        "vigorous",
+        "enthusiastic",
+        "eclectic",
+        "jealous",
+        "passionate",
+        "decisive",
+        "positive"
+      ],
+      "name": "Fire"
+    },
+    {
+      "description": "The earth person is serious, logical and methodical, intelligent, objective and good at planning. The direction associated with Earth is Center. The season for Earth is the changeover point of the four seasons. It is the fixed element for the animal signs Ox, Dragon, Goat and Dog.",
+      "keywords": [
+        "serious",
+        "logical",
+        "methodical",
+        "intelligent",
+        "objective",
+        "good at planning",
+        "practical",
+        "dependable",
+        "thoughtful"
+      ],
+      "name": "Earth"
+    },
+    {
+      "description": "The metal person is sincere, has fixed values and opinions, is strong of will, and has eloquence of speech. The direction associated with Metal is West. The season for Metal is Autumn. It is the fixed element for the animal signs Monkey and Rooster.",
+      "keywords": [
+        "sincere",
+        "strong-willed",
+        "eloquent",
+        "love of freedom",
+        "virtuous",
+        "gratitude",
+        "methodical"
+      ],
+      "name": "Metal"
+    },
+    {
+      "description": "The water person is persuasive, intuitive, and empathetic. The water person is objective and often sought out for their counsel. The direction associated with water is North. The season for Water is Winter. It is the fixed element for the animal signs Rat and Pig.",
+      "keywords": [
+        "persuasive",
+        "intuitive",
+        "empathic",
+        "objective",
+        "good listener",
+        "creative",
+        "wise",
+        "passionate",
+        "mysterious",
+        "introspective"
+      ],
+      "name": "Water"
+    }
+  ],
+  "element": [
+    {
+      "gender": "expressive",
+      "keywords": [
+        "expressive",
+        "social",
+        "conceptual"
+      ],
+      "name": "Air",
+      "symbol": "🜁"
+    },
+    {
+      "gender": "containing",
+      "keywords": [
+        "practical",
+        "cautious",
+        "materialistic"
+      ],
+      "name": "Earth",
+      "symbol": "🜃"
+    },
+    {
+      "gender": "expressive",
+      "keywords": [
+        "enthusiastic",
+        "driven",
+        "expressive",
+        "faithful"
+      ],
+      "name": "Fire",
+      "symbol": "🜂"
+    },
+    {
+      "gender": "containing",
+      "keywords": [
+        "emotional",
+        "empathic",
+        "sensitive"
+      ],
+      "name": "Water",
+      "symbol": "🜄"
+    }
+  ],
+  "modality": [
+    {
+      "keywords": [
+        "active",
+        "dynamic",
+        "initiative",
+        "great force"
+      ],
+      "name": "Cardinal"
+    },
+    {
+      "keywords": [
+        "resistant to change",
+        "strong-willed",
+        "inflexible"
+      ],
+      "name": "Fixed"
+    },
+    {
+      "keywords": [
+        "adaptable",
+        "flexible",
+        "resourceful"
+      ],
+      "name": "Mutable"
+    }
+  ],
+  "Chinese": [
+    {
+      "direction": "North",
+      "element": "Water",
+      "gender": "Yang",
+      "keywords": [
+        "creative",
+        "amiable",
+        "generous",
+        "judgmental",
+        "entrepreneurial"
+      ],
+      "name": "Rat",
+      "season": "Mid-Winter",
+      "symbol": "子🐀"
+    },
+    {
+      "direction": "North",
+      "element": "Earth",
+      "gender": "Yin",
+      "keywords": [
+        "leader",
+        "loyal",
+        "bull-headed"
+      ],
+      "name": "Ox",
+      "season": "Late Winter",
+      "symbol": "丑🐂"
+    },
+    {
+      "direction": "East",
+      "element": "Wood",
+      "gender": "Yang",
+      "keywords": [
+        "sensitive",
+        "extravagant",
+        "rebellious",
+        "justice"
+      ],
+      "name": "Tiger",
+      "season": "Early Spring",
+      "symbol": "寅🐅"
+    },
+    {
+      "direction": "East",
+      "element": "Wood",
+      "gender": "Yin",
+      "name": "Rabbit",
+      "keywords": [
+        "sentimental",
+        "affectionate",
+        "friendly"
+      ],
+      "season": "Mid-Spring",
+      "symbol": "卯🐇"
+    },
+    {
+      "direction": "East",
+      "element": "Earth",
+      "gender": "Yang",
+      "keywords": [
+        "larger than life",
+        "quick witted",
+        "charming",
+        "passionate"
+      ],
+      "name": "Dragon",
+      "season": "Late Spring",
+      "symbol": "辰🐉"
+    },
+    {
+      "direction": "South",
+      "element": "Fire",
+      "gender": "Yin",
+      "keywords": [
+        "psychic",
+        "unconditional love"
+      ],
+      "name": "Snake",
+      "season": "Early Summer",
+      "symbol": "巳🐍"
+    },
+    {
+      "direction": "South",
+      "element": "Fire",
+      "gender": "Yang",
+      "keywords": [
+        "independent",
+        "work ethic",
+        "intelligent",
+        "leadership"
+      ],
+      "name": "Horse",
+      "season": "Mid-Summer",
+      "symbol": "午🐎"
+    },
+    {
+      "direction": "South",
+      "element": "Earth",
+      "gender": "Yin",
+      "keywords": [
+        "gentle",
+        "loving",
+        "quiet",
+        "strong"
+      ],
+      "name": "Sheep",
+      "season": "Late Summer",
+      "symbol": "未🐑"
+    },
+    {
+      "direction": "West",
+      "element": "Metal",
+      "gender": "Yang",
+      "keywords": [
+        "confident",
+        "fast",
+        "intelligent",
+        "sense of humor"
+      ],
+      "name": "Monkey",
+      "season": "Early Autumn",
+      "symbol": "申🐒"
+    },
+    {
+      "direction": "West",
+      "element": "Metal",
+      "gender": "Yin",
+      "keywords": [
+        "extravagant",
+        "center of attention",
+        "unique",
+        "progressive"
+      ],
+      "name": "Rooster",
+      "season": "Mid-Autumn",
+      "symbol": "酉🐓"
+    },
+    {
+      "direction": "West",
+      "element": "Earth",
+      "gender": "Yang",
+      "keywords": [
+        "faithful",
+        "trustworthy",
+        "hard worker",
+        "protector",
+        "help those in need"
+      ],
+      "name": "Dog",
+      "season": "Late Autumn",
+      "symbol": "戌🐕"
+    },
+    {
+      "direction": "North",
+      "element": "Water",
+      "gender": "Yin",
+      "keywords": [
+        "kind",
+        "altruistic",
+        "humanitarian"
+      ],
+      "name": "Pig",
+      "season": "Early Winter",
+      "symbol": "亥🐖"
+    }
+  ],
+  "Hellenic": [
+    {
+      "detriment": "Moon",
+      "dignity": "Saturn",
+      "element": "Earth",
+      "end": 18,
+      "exaltation": "Mars",
+      "fall": "Jupiter",
+      "modality": "Cardinal",
+      "name": "Capricorn",
+      "planet": "Saturn",
+      "start": 0,
+      "symbol": "♑"
+    },
+    {
+      "detriment": "Sun",
+      "dignity": "Saturn",
+      "element": "Air",
+      "end": 49,
+      "exaltation": "",
+      "fall": "",
+      "modality": "Fixed",
+      "name": "Aquarius",
+      "planet": "Uranus",
+      "start": 19,
+      "symbol": "♒"
+    },
+    {
+      "detriment": "Mercury",
+      "dignity": "Jupiter",
+      "element": "Water",
+      "end": 78,
+      "exaltation": "Venus",
+      "fall": "Mercury",
+      "modality": "Mutable",
+      "name": "Pisces",
+      "planet": "Neptune",
+      "start": 50,
+      "symbol": "♓"
+    },
+    {
+      "detriment": "Venus",
+      "dignity": "Mars",
+      "element": "Fire",
+      "end": 108,
+      "exaltation": "Sun",
+      "fall": "Saturn",
+      "modality": "Cardinal",
+      "name": "Aries",
+      "planet": "Mars",
+      "start": 79,
+      "symbol": "♈"
+    },
+    {
+      "detriment": "Mars",
+      "dignity": "Venus",
+      "element": "Earth",
+      "end": 139,
+      "exaltation": "Moon",
+      "fall": "",
+      "modality": "Fixed",
+      "name": "Taurus",
+      "planet": "Venus",
+      "start": 109,
+      "symbol": "♉"
+    },
+    {
+      "detriment": "Jupiter",
+      "dignity": "Mercury",
+      "element": "Air",
+      "end": 170,
+      "exaltation": "",
+      "fall": "",
+      "modality": "Mutable",
+      "name": "Gemini",
+      "planet": "Mercury",
+      "start": 140,
+      "symbol": "♊"
+    },
+    {
+      "detriment": "Saturn",
+      "dignity": "Moon",
+      "element": "Water",
+      "end": 202,
+      "exaltation": "Jupiter",
+      "fall": "Mars",
+      "modality": "Cardinal",
+      "name": "Cancer",
+      "planet": "Moon",
+      "start": 171,
+      "symbol": "♋"
+    },
+    {
+      "detriment": "Saturn",
+      "dignity": "Sun",
+      "element": "Fire",
+      "end": 234,
+      "exaltation": "Earth",
+      "fall": "",
+      "modality": "Fixed",
+      "name": "Leo",
+      "planet": "Sun",
+      "start": 203,
+      "symbol": "♌"
+    },
+    {
+      "detriment": "Jupiter",
+      "dignity": "Mercury, Earth",
+      "element": "Earth",
+      "end": 264,
+      "exaltation": "Mercury",
+      "fall": "Venus",
+      "modality": "Mutable",
+      "name": "Virgo",
+      "planet": "Mercury",
+      "start": 235,
+      "symbol": "♍"
+    },
+    {
+      "detriment": "Mars",
+      "dignity": "Venus",
+      "element": "Air",
+      "end": 294,
+      "exaltation": "Saturn",
+      "fall": "Sun",
+      "modality": "Cardinal",
+      "name": "Libra",
+      "planet": "Venus",
+      "start": 265,
+      "symbol": "♎"
+    },
+    {
+      "detriment": "Venus, Earth",
+      "dignity": "Mars",
+      "element": "Water",
+      "end": 324,
+      "exaltation": "",
+      "fall": "Moon",
+      "modality": "Fixed",
+      "name": "Scorpio",
+      "planet": "Pluto",
+      "start": 295,
+      "symbol": "♏"
+    },
+    {
+      "detriment": "Mercury",
+      "dignity": "Jupiter",
+      "element": "Fire",
+      "end": 354,
+      "exaltation": "",
+      "fall": "",
+      "modality": "Mutable",
+      "name": "Sagittarius",
+      "planet": "Jupiter",
+      "start": 325,
+      "symbol": "♐"
+    },
+    {
+      "detriment": "Moon",
+      "dignity": "Saturn",
+      "element": "Earth",
+      "end": 366,
+      "exaltation": "Mars",
+      "fall": "Jupiter",
+      "modality": "Cardinal",
+      "name": "Capricorn",
+      "planet": "Saturn",
+      "start": 355,
+      "symbol": "♑"
+    }
+  ]
+}
