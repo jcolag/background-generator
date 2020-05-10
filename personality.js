@@ -33,8 +33,14 @@ class PersonalityGenerator {
   }
 
   getHellenic(jday) {
-    const hSign = this.zodiac.Hellenic
+    let hSign = this.zodiac.Hellenic
       .filter(h => jday >= h.start && jday <= h.end)[0];
+
+    if (hsign === null) {
+      const idx = Math.floor(Math.random() * this.zodiac.Hellenic.length;
+      hSign = this.zodiac.Hellenic[idx];
+      console.warning(`Generated a day of ${jday}; picking random sign`);
+    }
 
     hSign.element = this.zodiac.element
       .filter(e => e.name === hSign.element)[0];
