@@ -33,22 +33,26 @@ class PersonalityGenerator {
   }
 
   getHellenic(jday) {
+    jday = jday % 366;
+
     let hSign = this.zodiac.Hellenic
       .filter(h => jday >= h.start && jday <= h.end)[0];
+    let first = this.zodiac.Hellenic[0];
+    let last = this.zodiac.Hellenic[this.zodiac.Hellenic.length - 1];
 
     if (hSign === null || typeof hSign === 'undefined') {
       const idx = Math.floor(Math.random() * this.zodiac.Hellenic.length);
       hSign = this.zodiac.Hellenic[idx];
-      console.warning(`Generated a day of ${jday}; picking random sign`);
+      console.log(`Generated a day of ${jday}; picking random sign`);
     }
 
     hSign.element = this.zodiac.element
       .filter(e => e.name === hSign.element)[0];
     hSign.modality = this.zodiac.modality
       .filter(m => m.name === hSign.modality)[0];
-    if (jday < hSign.start + 5) {
-      hSign.cuspOf = this.getHellenic(jday - 15);
-    } else if (jday > hSign.end - 5) {
+    if (hSign.start !== first.start && jday < hSign.start + 5) {
+      hSign.cuspOf = this.getHellenic(jday - 15 + 365);
+    } else if (hSign.end !== last.end && jday > hSign.end - 5) {
       hSign.cuspOf = this.getHellenic(jday + 15);
     }
 
