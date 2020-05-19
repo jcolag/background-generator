@@ -227,22 +227,23 @@
         literate (<%= person.literacy %>).
       <% } %>
       <h3>Possible Personality</h3>
-      The following is loosely based on astrological signs to provide a
-      rough sketch, help narrow down age (if desired), and provide
-      provide a birthday.  In this case,
-      &ldquo;<%= title %>&rdquo;
-      was born on
-      <%= personality.date.toLocaleString('default', { month: 'long' }) %>
-      <%= personality.date.getDate() %>
-      (<%= personality.sign.name %> <%= personality.sign.symbol %>
-      <% if (personality.sign.hasOwnProperty('cuspOf')) { %>
-        on the cusp of
-        <%= personality.sign.cuspOf.name %>
-        <%= personality.sign.cuspOf.symbol %>
-      <% } %>),
-      in the year of the
-      <%= personality.year.name %> <%= personality.year.symbol %>.
-      <br>
+      <p>
+        The following is loosely based on astrological signs to provide a
+        rough sketch, help narrow down age (if desired), and provide
+        provide a birthday.  In this case, &ldquo;<%= title %>&rdquo;
+        was born on
+        <%= personality.date.toLocaleString('default', { month: 'long' }) %>
+        <%= personality.date.getDate() %>
+        (<%= personality.sign.name %> <%= personality.sign.symbol %>
+        <% if (personality.sign.hasOwnProperty('cuspOf')) { %>
+          on the cusp of
+          <%= personality.sign.cuspOf.name %>
+          <%= personality.sign.cuspOf.symbol %>
+        <% } %>),
+        in the year of the
+        <%= personality.year.name %> <%= personality.year.symbol %>.
+      </p>
+      <p>
       Friends tend to describe this person with words like:
       <% var keywordList = Object.keys(personality.keywords).sort() %>
       <% for (var ik = 0; ik < keywordList.length; ik++) { %>
@@ -260,9 +261,11 @@
         <% } %>
         <%- keytext %>
       <% } %>
-      <br>
+      </p>
+      <p>
       Additionally, we're told that:
       <%= personality.year.element.description %>
+      </p>
       <h3>More Information</h3>
       <p>
         <small>Please see
