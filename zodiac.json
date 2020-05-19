@@ -86,7 +86,7 @@
         "conceptual"
       ],
       "name": "Air",
-      "symbol": "🜁"
+      "symbol": "🜁 🌬️"
     },
     {
       "gender": "containing",
@@ -96,7 +96,7 @@
         "materialistic"
       ],
       "name": "Earth",
-      "symbol": "🜃"
+      "symbol": "🜃 ⛰️"
     },
     {
       "gender": "expressive",
@@ -107,7 +107,7 @@
         "faithful"
       ],
       "name": "Fire",
-      "symbol": "🜂"
+      "symbol": "🜂 🔥"
     },
     {
       "gender": "containing",
@@ -117,7 +117,7 @@
         "sensitive"
       ],
       "name": "Water",
-      "symbol": "🜄"
+      "symbol": "🜄 🌊"
     }
   ],
   "modality": [
@@ -161,7 +161,7 @@
       ],
       "name": "Rat",
       "season": "Mid-Winter",
-      "symbol": "子🐀"
+      "symbol": "子 🐀"
     },
     {
       "direction": "North",
@@ -174,7 +174,7 @@
       ],
       "name": "Ox",
       "season": "Late Winter",
-      "symbol": "丑🐂"
+      "symbol": "丑 🐂"
     },
     {
       "direction": "East",
@@ -188,7 +188,7 @@
       ],
       "name": "Tiger",
       "season": "Early Spring",
-      "symbol": "寅🐅"
+      "symbol": "寅 🐅"
     },
     {
       "direction": "East",
@@ -201,7 +201,7 @@
         "friendly"
       ],
       "season": "Mid-Spring",
-      "symbol": "卯🐇"
+      "symbol": "卯 🐇"
     },
     {
       "direction": "East",
@@ -215,7 +215,7 @@
       ],
       "name": "Dragon",
       "season": "Late Spring",
-      "symbol": "辰🐉"
+      "symbol": "辰 🐉"
     },
     {
       "direction": "South",
@@ -227,7 +227,7 @@
       ],
       "name": "Snake",
       "season": "Early Summer",
-      "symbol": "巳🐍"
+      "symbol": "巳 🐍"
     },
     {
       "direction": "South",
@@ -241,7 +241,7 @@
       ],
       "name": "Horse",
       "season": "Mid-Summer",
-      "symbol": "午🐎"
+      "symbol": "午 🐎"
     },
     {
       "direction": "South",
@@ -255,7 +255,7 @@
       ],
       "name": "Sheep",
       "season": "Late Summer",
-      "symbol": "未🐑"
+      "symbol": "未 🐑"
     },
     {
       "direction": "West",
@@ -269,7 +269,7 @@
       ],
       "name": "Monkey",
       "season": "Early Autumn",
-      "symbol": "申🐒"
+      "symbol": "申 🐒"
     },
     {
       "direction": "West",
@@ -283,7 +283,7 @@
       ],
       "name": "Rooster",
       "season": "Mid-Autumn",
-      "symbol": "酉🐓"
+      "symbol": "酉 🐓"
     },
     {
       "direction": "West",
@@ -298,7 +298,7 @@
       ],
       "name": "Dog",
       "season": "Late Autumn",
-      "symbol": "戌🐕"
+      "symbol": "戌 🐕"
     },
     {
       "direction": "North",
@@ -311,7 +311,7 @@
       ],
       "name": "Pig",
       "season": "Early Winter",
-      "symbol": "亥🐖"
+      "symbol": "亥 🐖"
     }
   ],
   "Hellenic": [
@@ -326,7 +326,7 @@
       "name": "Capricorn",
       "planet": "Saturn",
       "start": 0,
-      "symbol": "♑"
+      "symbol": "♑ 🐐"
     },
     {
       "detriment": "Sun",
@@ -339,7 +339,7 @@
       "name": "Aquarius",
       "planet": "Uranus",
       "start": 19,
-      "symbol": "♒"
+      "symbol": "♒ 🏺"
     },
     {
       "detriment": "Mercury",
@@ -352,7 +352,7 @@
       "name": "Pisces",
       "planet": "Neptune",
       "start": 50,
-      "symbol": "♓"
+      "symbol": "♓ 🐟"
     },
     {
       "detriment": "Venus",
@@ -365,7 +365,7 @@
       "name": "Aries",
       "planet": "Mars",
       "start": 79,
-      "symbol": "♈"
+      "symbol": "♈ 🐏"
     },
     {
       "detriment": "Mars",
@@ -378,7 +378,7 @@
       "name": "Taurus",
       "planet": "Venus",
       "start": 109,
-      "symbol": "♉"
+      "symbol": "♉ 🐂"
     },
     {
       "detriment": "Jupiter",
@@ -391,7 +391,7 @@
       "name": "Gemini",
       "planet": "Mercury",
       "start": 140,
-      "symbol": "♊"
+      "symbol": "♊ 👨🏼‍🤝‍👨🏾"
     },
     {
       "detriment": "Saturn",
@@ -404,7 +404,7 @@
       "name": "Cancer",
       "planet": "Moon",
       "start": 171,
-      "symbol": "♋"
+      "symbol": "♋ 🦀"
     },
     {
       "detriment": "Saturn",
@@ -417,7 +417,7 @@
       "name": "Leo",
       "planet": "Sun",
       "start": 203,
-      "symbol": "♌"
+      "symbol": "♌ 🦁"
     },
     {
       "detriment": "Jupiter",
@@ -430,7 +430,7 @@
       "name": "Virgo",
       "planet": "Mercury",
       "start": 235,
-      "symbol": "♍"
+      "symbol": "♍ 👧"
     },
     {
       "detriment": "Mars",
@@ -443,7 +443,7 @@
       "name": "Libra",
       "planet": "Venus",
       "start": 265,
-      "symbol": "♎"
+      "symbol": "♎ ⚖️"
     },
     {
       "detriment": "Venus, Earth",
@@ -456,7 +456,7 @@
       "name": "Scorpio",
       "planet": "Pluto",
       "start": 295,
-      "symbol": "♏"
+      "symbol": "♏🦂"
     },
     {
       "detriment": "Mercury",
@@ -469,7 +469,7 @@
       "name": "Sagittarius",
       "planet": "Jupiter",
       "start": 325,
-      "symbol": "♐"
+      "symbol": "♐ 🏹"
     },
     {
       "detriment": "Moon",
@@ -482,7 +482,7 @@
       "name": "Capricorn",
       "planet": "Saturn",
       "start": 355,
-      "symbol": "♑"
+      "symbol": "♑ 🐐"
     }
   ]
 }
