@@ -10,6 +10,7 @@ class PeopleGenerator {
     const peopleList = [];
     const population = data.loadGrid('population_density_deg.csv');
     const countries = data.loadGrid('country_deg.csv');
+    const luschan = data.loadGrid('vonluschan.csv');
     var skinTones = data.loadGrid('skintones.csv');
     const ciafact = JSON.parse(fs.readFileSync('factbook.json'));
     const countrycodes = {};
@@ -20,6 +21,12 @@ class PeopleGenerator {
     const skinRatioY = skinMaxY / countries.length;
     const skinToneMap = [];
     const uiNames = JSON.parse(fs.readFileSync('names.json').toString());
+
+    luschan.pop();
+    for (let cidx = 0; cidx < luschan.length; cidx++) {
+      luschan[cidx][0] = Number(luschan[cidx][0]);
+      luschan[cidx][1] = parseInt(luschan[cidx][1].slice(1), 16);
+    }
 
     for (let stmx = 0; stmx < skinMaxX; stmx++) {
       skinToneMap.push(new Array(skinMaxY));
@@ -289,6 +296,7 @@ class PeopleGenerator {
           output.candidateName = name;
         }
         output.skinColor = skin;
+        output.skinColorFixed = this.nearestColor(skin.color, luschan);
         if (impair !== null && impair !== '') {
           output.physicalImpairments = impair;
         }
@@ -936,6 +944,46 @@ class PeopleGenerator {
     }
 
     return emoji;
+  }
+
+  nearestColor(color, list) {
+    if (typeof color === 'string' && color[0] === '#') {
+      color = parseInt(color.slice(1), 16);
+    }
+
+    // I'm using RGB components, here, instead of converting to HSV,
+    // because hue doesn't change much in human skin tones and there
+    // are colors on the map that have nothing to do with skin color.
+    // So, nobody cares which color is closest to the oceanic blue...
+    const cr = color & 0x000000FF;
+    const cg = color & 0x0000FF00 >> 8;
+    const cb = color & 0x00FF0000 >> 16;
+    let minDist = 256 * 256 * 3;
+    let minIndex = -1;
+    let idx = 0;
+
+    list.forEach(c => {
+      const ccr = c[1] & 0x000000FF;
+      const ccg = c[1] & 0x0000FF00 >> 8;
+      const ccb = c[1] & 0x00FF0000 >> 16;
+      const dr = ccr - cr;
+      const dg = ccg - cg;
+      const db = ccb - cb;
+      const dist = dr * dr + dg * dg + db * db;
+
+      if (dist < minDist) {
+        minIndex = idx;
+        minDist = dist;
+      }
+
+      idx += 1;
+    });
+    let outColor = color;
+    if (minIndex >= 0) {
+      outColor = list[minIndex][1];
+    }
+
+    return `#${outColor.toString(16).toUpperCase()}`;
   }
 }
 
