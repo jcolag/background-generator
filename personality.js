@@ -12,7 +12,9 @@ class PersonalityGenerator {
     const chiSign = this.getChinese(year);
     const helSign = this.getHellenic(jday);
     const keywords = this.getKeywords(chiSign, helSign);
-    let date = new Date('December 31, 1998 12:00:00');
+    // Adding days should put us entirely in 1999, which we know isn't a Leap Year,
+    // making sure the probilities are even
+    let date = new Date('January 1, 1998 12:00:00');
 
     date.setDate(date.getDate() + jday);
     this.result = {
