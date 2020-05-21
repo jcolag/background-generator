@@ -37,11 +37,14 @@ class PersonalityGenerator {
   getHellenic(jday) {
     jday = jday % 366;
 
+    // We need the sigh where the day is in its bounds
     let hSign = this.zodiac.Hellenic
       .filter(h => jday >= h.start && jday <= h.end)[0];
     let first = this.zodiac.Hellenic[0];
     let last = this.zodiac.Hellenic[this.zodiac.Hellenic.length - 1];
 
+    // This code will probably never be called, but is wedged in on the chance that
+    // the randomly generated day is out of bounds.
     if (hSign === null || typeof hSign === 'undefined') {
       const idx = Math.floor(Math.random() * this.zodiac.Hellenic.length);
       hSign = this.zodiac.Hellenic[idx];
@@ -52,6 +55,10 @@ class PersonalityGenerator {
       .filter(e => e.name === hSign.element)[0];
     hSign.modality = this.zodiac.modality
       .filter(m => m.name === hSign.modality)[0];
+    // If the date is close to the sign's boundary, then it's on the cusp
+    // of another sign
+    // ...except, the first and last sign are actually the same, so those
+    // boundaries don't count
     if (hSign.start !== first.start && jday < hSign.start + 5) {
       hSign.cuspOf = this.getHellenic(jday - 15 + 365);
     } else if (hSign.end !== last.end && jday > hSign.end - 5) {
@@ -62,6 +69,7 @@ class PersonalityGenerator {
   }
 
   getKeywords(chinese, hellenic) {
+    // Collect the keyword lists we know exist
     const keywords = [
       chinese.keywords,
       chinese.element.keywords,
@@ -70,11 +78,14 @@ class PersonalityGenerator {
     ];
     const result = {};
 
+    // Add the keyword lists that only come when the character is on the cusp
+    // of two signs
     if (hellenic.hasOwnProperty('cuspOf')) {
       keywords.push(hellenic.cuspOf.element.keywords);
       keywords.push(hellenic.cuspOf.modality.keywords);
     }
 
+    // Join the keyword lists, then count up the frequency of each word
     [].concat(...keywords).forEach(k => {
       if (result.hasOwnProperty(k)) {
         result[k] += 1;

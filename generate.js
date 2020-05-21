@@ -7,9 +7,17 @@ const data = new Data();
 
 class PeopleGenerator {
   generate(people = 1) {
+    // This looks intimidating, but it's just gathering all the data,
+    // calling the other methods in the class to winnow down what we
+    // have to a possible profile, and packaging those results up for
+    // the front end.
     const peopleList = [];
     const population = data.loadGrid('population_density_deg.csv');
     const countries = data.loadGrid('country_deg.csv');
+    // The colors in the following file have been taken from:
+    // https://commons.wikimedia.org/wiki/File:Felix_von_Luschan_Skin_Color_chart2.svg
+    // by https://commons.wikimedia.org/wiki/User_talk:A7N8X
+    // available under CC-BY-SA 4.0 International
     const luschan = data.loadGrid('vonluschan.csv');
     var skinTones = data.loadGrid('skintones.csv');
     const ciafact = JSON.parse(fs.readFileSync('factbook.json'));
@@ -352,6 +360,11 @@ class PeopleGenerator {
   }
 
   createCiaKey(country) {
+    // Unfortunately, there's a whole mess of countries where the
+    // available data sources don't match the CIA World Factbook name,
+    // so this tries to hack together the name that works.
+    // If anything is going to fail to produce the proper results, it's
+    // this code.
     return country
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
@@ -407,6 +420,10 @@ class PeopleGenerator {
     let pt;
     let color;
 
+    // It would be so much better to just have a set of maps whose
+    // coordinates matched more precisely, but in the absence of
+    // such precision, it's easier to just look for the nearest pixel
+    // that's legitimate.
     while (true) {
       for (var i = -radius; i <= radius; i++) {
         perimeter.push({
@@ -499,19 +516,27 @@ class PeopleGenerator {
   }
 
   letterToEmoji(l) {
+    // The letter emoji code-points are a fixed distance from the letter
+    // code-points themselves
     return String.fromCodePoint(l.toLowerCase().charCodeAt() + 127365);
   }
 
   getFlagEmoji(country) {
     if (!country) {
+      // No country, no flag
       return '';
     }
 
+    // If the display supports it, a flag emoji appears when you take
+    // a two-letter ISO country code and turn the letters into their
+    // emoji equivalent
     const cc = country.toUpperCase();
     return Array.from(cc).map(this.letterToEmoji).join('');
   }
 
   getDisability() {
+    // I took the following estimates from Wikipedia, so they could
+    // easily be wrong or outdates
     const disPct = {
       'Visual': 2.3,
       'Hearing': 3.6,
@@ -534,6 +559,8 @@ class PeopleGenerator {
   }
 
   getMentalIllness() {
+    // I took the following estimates from Wikipedia, so they could
+    // easily be wrong or outdates
     const mIllnessPct = {
       'Depression': 6.7,
       'Dysthymia': 1.5,
@@ -559,6 +586,11 @@ class PeopleGenerator {
   }
 
   getLgbt(identity) {
+    // I took the following estimates from Wikipedia, so they could
+    // easily be wrong or outdates.  It's a political decision, but I
+    // opted not to gender the percentages, under the assumption that
+    // men would typically be less likely to report non-heterosexual
+    // identification.
     const lgbPct = [
       {
         'name': 'gay',
@@ -625,6 +657,9 @@ class PeopleGenerator {
       return null;
     }
 
+    // It's worth noting that there are entire categories of names
+    // that this "algorithm" would never be able to cope with.  Even
+    // using it for Arabic countries is a *huge* stretch.
     const cc = countries[0];
     const gnSet = cc[g];
     const snSet = cc.surnames;
@@ -677,6 +712,8 @@ class PeopleGenerator {
   }
 
   getReligionEmoji(religion) {
+    // This is an unbelievable hack, but it mostly does the job until
+    // a more data-driven idea comes along
     const list = [
       {
         "name": "Adventist",
