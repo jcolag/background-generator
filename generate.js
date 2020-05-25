@@ -992,17 +992,17 @@ class PeopleGenerator {
     // because hue doesn't change much in human skin tones and there
     // are colors on the map that have nothing to do with skin color.
     // So, nobody cares which color is closest to the oceanic blue...
-    const cr = color & 0x000000FF;
-    const cg = color & 0x0000FF00 >> 8;
-    const cb = color & 0x00FF0000 >> 16;
+    const cb = color & 0x000000FF;
+    const cg = (color & 0x0000FF00) >> 8;
+    const cr = (color & 0x00FF0000) >> 16;
     let minDist = 256 * 256 * 3;
     let minIndex = -1;
     let idx = 0;
 
     list.forEach(c => {
-      const ccr = c[1] & 0x000000FF;
-      const ccg = c[1] & 0x0000FF00 >> 8;
-      const ccb = c[1] & 0x00FF0000 >> 16;
+      const ccb = c[1] & 0x000000FF;
+      const ccg = (c[1] & 0x0000FF00) >> 8;
+      const ccr = (c[1] & 0x00FF0000) >> 16;
       const dr = ccr - cr;
       const dg = ccg - cg;
       const db = ccb - cb;
