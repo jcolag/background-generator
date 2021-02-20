@@ -5,6 +5,14 @@ const unidecode = require('unidecode-plus');
 const Data = require('./data');
 const data = new Data();
 
+const personalityTraits = [
+  { high: 'introverted', low: 'extraverted' },
+  { high: 'agreeable', low: 'disagreeable' },
+  { high: 'neurotic', low: 'emotionally stable' },
+  { high: 'conscientious', low: 'free-spirited' },
+  { high: 'open to experience', low: 'narrow-minded' },
+];
+
 class PeopleGenerator {
   generate(people = 1) {
     // This looks intimidating, but it's just gathering all the data,
@@ -339,6 +347,7 @@ class PeopleGenerator {
         console.warn(`* * Could not find ${key}`);
       }
 
+      output.personalityTraits = this.guessPersonality(personalityTraits);
       peopleList.push(output);
     }
 
@@ -709,6 +718,18 @@ class PeopleGenerator {
     }
 
     return name;
+  }
+
+  guessPersonality(traits) {
+    const result = [];
+
+    traits.forEach((trait) => {
+      let t = Object.assign({}, trait);
+
+      t.strength = Math.trunc(Math.random() * 201);
+      result.push(t);
+    });
+    return result;
   }
 
   getReligionEmoji(religion) {

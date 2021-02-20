@@ -235,6 +235,27 @@
       <% } %>
       <h3>Possible Personality</h3>
       <p>
+        The following traits are arbitrarily ordered as to which is the
+        &ldquo;high&rdquo; and &ldquo;low&rdquo; ends of the spectrum.
+        Negative numbers only mean that the scale is closer to the item
+        on the left-hand side of the table.
+      </p>
+      <table>
+      <% person.personalityTraits.forEach((t) => { %>
+        <tr>
+          <th>
+            <%= t.low %>
+          </th>
+          <td style="width: 200px; text-align: center; background: linear-gradient(to right, #b1a296 <%= t.strength / 2 - 5 %>%, transparent <%= t.strength / 2 + 5 %>%);">
+            <%= t.strength - 100 %>
+          </td>
+          <th>
+            <%= t.high %>
+          </th>
+        </tr>
+      <% }); %>
+      </table>
+      <p>
         The following is loosely based on astrological signs to provide a
         rough sketch, help narrow down age (if desired), and provide
         provide a birthday.  In this case, &ldquo;<%= title %>&rdquo;
