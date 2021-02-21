@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
   person = people.generate();
-  personality.generate();
+  personality.generate(person[0].age);
   res.render('index', {
     mapboxToken: config.mapboxToken,
     person: person[0],

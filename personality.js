@@ -4,7 +4,7 @@ class PersonalityGenerator {
   constructor() {
   }
 
-  generate() {
+  generate(age) {
     this.zodiac = JSON.parse(fs.readFileSync('zodiac.json'));
 
     const jday = Math.floor(Math.random() * 365);
@@ -12,18 +12,41 @@ class PersonalityGenerator {
     const chiSign = this.getChinese(year);
     const helSign = this.getHellenic(jday);
     const keywords = this.getKeywords(chiSign, helSign);
-    // Adding days should put us entirely in 1999, which we know isn't a Leap Year,
-    // making sure the probilities are even
+    // Adding days should put us entirely in 1999,
+    // which we know isn't a Leap Year,
+    // making sure the probilities are even.
     let date = new Date('January 1, 1998 12:00:00');
+
+    const ages = this.extractAges(age);
+    let thisYear = new Date().getFullYear();
+    const birthYears = [];
+
+    // Add a maximum age for senior citizens.
+    if (ages.length === 1) {
+      ages.push(120);
+    }
+
+    // Find the years that fit the right Chinese zodiac sign and
+    // the person's age.
+    for (let y = thisYear - ages[1]; y < thisYear - ages[0]; y++) {
+      if (y % 12 === chiSign.year) {
+        birthYears.push(y);
+      }
+    }
 
     date.setDate(date.getDate() + jday);
     this.result = {
+      birthYears: birthYears,
       date: date,
       julianDay: jday,
       keywords: keywords,
       sign: helSign,
       year: chiSign,
     }
+  }
+
+  extractAges(age) {
+    return age.match(/\d+/g);
   }
 
   getChinese(year) {

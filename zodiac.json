@@ -161,7 +161,8 @@
       ],
       "name": "Rat",
       "season": "Mid-Winter",
-      "symbol": "子 🐀"
+      "symbol": "子 🐀",
+      "year": 4
     },
     {
       "direction": "North",
@@ -174,7 +175,8 @@
       ],
       "name": "Ox",
       "season": "Late Winter",
-      "symbol": "丑 🐂"
+      "symbol": "丑 🐂",
+      "year": 5
     },
     {
       "direction": "East",
@@ -188,7 +190,8 @@
       ],
       "name": "Tiger",
       "season": "Early Spring",
-      "symbol": "寅 🐅"
+      "symbol": "寅 🐅",
+      "year": 6
     },
     {
       "direction": "East",
@@ -201,7 +204,8 @@
         "friendly"
       ],
       "season": "Mid-Spring",
-      "symbol": "卯 🐇"
+      "symbol": "卯 🐇",
+      "year": 7
     },
     {
       "direction": "East",
@@ -215,7 +219,8 @@
       ],
       "name": "Dragon",
       "season": "Late Spring",
-      "symbol": "辰 🐉"
+      "symbol": "辰 🐉",
+      "year": 8
     },
     {
       "direction": "South",
@@ -227,7 +232,8 @@
       ],
       "name": "Snake",
       "season": "Early Summer",
-      "symbol": "巳 🐍"
+      "symbol": "巳 🐍",
+      "year": 9
     },
     {
       "direction": "South",
@@ -241,7 +247,8 @@
       ],
       "name": "Horse",
       "season": "Mid-Summer",
-      "symbol": "午 🐎"
+      "symbol": "午 🐎",
+      "year": 10
     },
     {
       "direction": "South",
@@ -255,7 +262,8 @@
       ],
       "name": "Sheep",
       "season": "Late Summer",
-      "symbol": "未 🐑"
+      "symbol": "未 🐑",
+      "year": 11
     },
     {
       "direction": "West",
@@ -269,7 +277,8 @@
       ],
       "name": "Monkey",
       "season": "Early Autumn",
-      "symbol": "申 🐒"
+      "symbol": "申 🐒",
+      "year": 0
     },
     {
       "direction": "West",
@@ -283,7 +292,8 @@
       ],
       "name": "Rooster",
       "season": "Mid-Autumn",
-      "symbol": "酉 🐓"
+      "symbol": "酉 🐓",
+      "year": 1
     },
     {
       "direction": "West",
@@ -298,7 +308,8 @@
       ],
       "name": "Dog",
       "season": "Late Autumn",
-      "symbol": "戌 🐕"
+      "symbol": "戌 🐕",
+      "year": 2
     },
     {
       "direction": "North",
@@ -311,7 +322,8 @@
       ],
       "name": "Pig",
       "season": "Early Winter",
-      "symbol": "亥 🐖"
+      "symbol": "亥 🐖",
+      "year": 3
     }
   ],
   "Hellenic": [
