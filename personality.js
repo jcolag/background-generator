@@ -1,4 +1,5 @@
 const fs = require('fs');
+const calendars = require('date-chinese');
 
 class PersonalityGenerator {
   constructor() {
@@ -7,6 +8,7 @@ class PersonalityGenerator {
   generate(age) {
     this.zodiac = JSON.parse(fs.readFileSync('zodiac.json'));
 
+    const chcal = new calendars.CalendarChinese();
     const jday = Math.floor(Math.random() * 365);
     const year = Math.floor(Math.random() * this.zodiac.Chinese.length);
     const chiSign = this.getChinese(year);
@@ -28,9 +30,22 @@ class PersonalityGenerator {
 
     // Find the years that fit the right Chinese zodiac sign and
     // the person's age.
-    for (let y = thisYear - ages[1]; y < thisYear - ages[0]; y++) {
+    for (let y = thisYear - ages[1] - 1; y < thisYear - ages[0]; y++) {
       if (y % 12 === chiSign.year) {
-        birthYears.push(y);
+        let yy = y;
+        const ny = chcal.newYear(y);
+        chcal.fromJDE(ny);
+        const nyg = chcal.toGregorian();
+        const newyear = new Date(nyg.year, nyg.month, nyg.day);
+        let when = new Date(yy, 0);
+
+        when.setDate(date.getDate() + jday);
+
+        if (when < newyear) {
+          yy += 1;
+        }
+
+        birthYears.push(yy);
       }
     }
 

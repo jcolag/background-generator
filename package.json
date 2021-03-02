@@ -5,13 +5,14 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chinese-date": "^0.0.4",
+    "date-chinese": "^1.0.7",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "find-nearest-cities": "^1.0.0",
     "helmet": "^3.21.3",
     "unidecode-plus": "^1.0.2"
   },
-  "devDependencies": {},
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
