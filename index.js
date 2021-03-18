@@ -3,9 +3,11 @@ const express = require('express');
 const fs = require('fs');
 var https = require('https');
 const PeopleGenerator = require('./generate.js');
+const HeadshotGenerator = require('./headshot.js');
 const PersonalityGenerator = require('./personality');
 
 const app = express();
+const headshot = new HeadshotGenerator();
 const people = new PeopleGenerator();
 const personality = new PersonalityGenerator();
 const config = JSON.parse(fs.readFileSync('./config.json'));
@@ -19,8 +21,10 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
   person = people.generate();
+  const head = headshot.generate(person[0].skinColorFixed);
   personality.generate(person[0].age);
   res.render('index', {
+    headshot: head,
     mapboxToken: config.mapboxToken,
     person: person[0],
     personality: personality.result,
