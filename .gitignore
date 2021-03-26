@@ -106,3 +106,6 @@ dist
 # Tokens
 config.json
 keys/
+
+# Intermediate files
+*.svg
