@@ -9,7 +9,7 @@ class HeadshotGenerator {
 
     const size = 500;
     const head = '<svg\n  xmlns="http://www.w3.org/2000/svg"\n'
-      + `  viewBox="0 0 ${size} ${size}"\n  width="${size}"\n`
+      + `  viewBox="50 50 ${size * 4 / 5} ${size * 4 / 5}"\n  width="${size}"\n`
       + `  height="${size}"\n>\n`
       + '  <style>\n    circle, line, path, polygon, polyline, rect {\n'
       + `      fill: ${skintone};\n      stroke: currentColor;\n`
