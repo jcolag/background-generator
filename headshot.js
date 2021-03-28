@@ -78,7 +78,16 @@ class HeadshotGenerator {
       + `    y1="${offsetv + height / 8 * 7}"\n`
       + `    y2="${offsetv + height / 8 * 7}\n`;
 
-    fs.writeFileSync(outfile, head+path+eyeleft+eyeright+nose+mouth+foot);
+    fs.writeFileSync(
+      outfile,
+      head
+      + path
+      + eyeleft
+      + eyeright
+      + nose
+      + mouth
+      + foot
+    );
   }
 }
 
