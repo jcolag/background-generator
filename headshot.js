@@ -56,15 +56,15 @@ class HeadshotGenerator {
       + `    M ${size / 2 - width * 5 / 8} ${offsetv + height / 2}\n`
       + `    q ${width / 8 + uppereyeoffset * width / 4} -20 ${width / 2} 0\n`
       + `    q -${width / 8 + lowereyeoffset * width / 4} 20 -${width / 2} 0\n`
-      + `    m ${width / 4} 5\n`
-      + `    a 5 5 0 1 1 5 0\n`
+    //  + `    m ${width / 4} 5\n`
+    //  + `    a 5 5 0 1 1 5 0\n`
       + '    z"/>\n';
     const eyeright = '  <path style="fill: ivory" d="\n'
       + `    M ${size / 2 + width * 5 / 8} ${offsetv + height / 2}\n`
       + `    q -${width / 8 + uppereyeoffset * width / 4} -20 -${width / 2} 0\n`
       + `    q ${width / 8 + lowereyeoffset * width / 4} 20 ${width / 2} 0\n`
-      + `    m -${width / 4} 5\n`
-      + `    a 5 5 0 1 1 5 0\n`
+    //  + `    m -${width / 4} 5\n`
+    //  + `    a 5 5 0 1 1 5 0\n`
       + '    z"/>\n';
       + '"/>\n';
     const nose = '  <path d="\n'
