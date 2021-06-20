@@ -83,13 +83,16 @@
   </head>
   <body>
     <div class="container">
+      <% const spronoun = person.pronoun[0] %>
       <h1><%= title %></h1>
       <h2>Approximate Location <%= person.globe %></h2>
       With coordinates at <%= person.latitude %> <%= person.longitude %>,
-      this person
       <% if (person.hasOwnProperty('candidateName')) { %>
-        (<%= title %>)
+        <%= title %>
+      <% } else { %>
+        this person
       <% } %>
+      (<%= person.pronoun.join('/') %>)
       is likely from <%= person.flag %> <%= person.country %>
       <% if (person.hasOwnProperty('countryNative') &&
           person.countryNative !== 'none') {
@@ -138,7 +141,8 @@
           <%= title %>.
         </figcaption>
       </figure>
-      This person is probably
+      <%= spronoun.charAt(0).toUpperCase() + spronoun.slice(1) %>
+      is probably
       <% if (person.gender.hasOwnProperty('sexuality') ||
           person.gender.hasOwnProperty('presentation')) { %>
           <%= person.gender.flag %>
@@ -157,7 +161,11 @@
       Like
       <% if (person.denomination !== null) { %>
         approximately <%= person.denomination.population %>%
-        of the country, they are or practice some form of
+        of the country,
+        <%= person.pronoun[0] %>
+        <%= spronoun === 'they' ? 'are' : 'is' %>
+        or practice<%= spronoun === 'they' ? '' : 's' %>
+        some form of
         <%= person.denomination.name %>
         <% if (person.denomination.emoji !== null) { %>
           (<%= person.denomination.emoji %>)
@@ -184,7 +192,9 @@
       <br>
       <% var impairmentLength = person.physicalImpairments.length; %>
       <% if (impairmentLength > 0) { %>
-        They're living with ♿
+        <%= spronoun.charAt(0).toUpperCase() + spronoun.slice(1) %>
+        <%= spronoun === 'they' ? 'are' : 'is' %>
+        living with ♿
         <% var last = person.physicalImpairments.pop(); %>
         <% if (person.physicalImpairments.length > 0) { %>
           <%= person.physicalImpairments.map(
@@ -201,7 +211,8 @@
         <% if (impairmentLength > 0) { %>
           and
         <% } else { %>
-          They're
+          <%= spronoun.charAt(0).toUpperCase() + spronoun.slice(1) %>
+          <%= spronoun === 'they' ? 'are' : 'is' %>
         <% } %>
         coping with 🧠
         <% var last = person.psychologicalImpairments.pop(); %>
@@ -217,7 +228,8 @@
       <br>
       <% var languages = person.languages.length; %>
       <% if (languages > 0) { %>
-        They speak
+        <%= spronoun.charAt(0).toUpperCase() + spronoun.slice(1) %>
+        speak<%= spronoun === 'they' ? '' : 's' %>
         <% var last = person.languages.pop(); %>
         <% if (person.languages.length > 0) { %>
           <%= person.languages.map(
@@ -231,10 +243,13 @@
       <% } %>
       <% if (languages > 0
           && person.hasOwnProperty('literacy')) { %>
-        and are also
+        and
+        <%= spronoun === 'they' ? 'are' : 'is' %>
+        also
       <% } else { %>
         <% if (person.hasOwnProperty('literacy')) { %>
-          They're
+          <%= spronoun.charAt(0).toUpperCase() + spronoun.slice(1) %>
+          <%= spronoun === 'they' ? 'are' : 'is' %>
         <% } %>
       <% } %>
       <% if (person.hasOwnProperty('literacy')) { %>
@@ -280,7 +295,7 @@
         (<%= personality.birthYears.join(', ') %>).
       </p>
       <p>
-      Friends tend to describe this person with words like:
+      Friends tend to describe <%= person.pronoun[1] %> with words like:
       <% var keywordList = Object.keys(personality.keywords).sort() %>
       <% for (var ik = 0; ik < keywordList.length; ik++) { %>
         <% var keytext = keywordList[ik] %>

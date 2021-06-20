@@ -294,6 +294,7 @@ class PeopleGenerator {
         }
 
         output.gender = this.getLgbt(gender);
+        output.pronoun = this.getPronoun(gender, output.gender);
         output.age = ageName;
         output.denomination = {
           emoji: denom,
@@ -652,6 +653,41 @@ class PeopleGenerator {
     }
 
     return identity;
+  }
+
+  getPronoun(gender, genderIdentity) {
+    const neutral = [
+      [ 'they', 'them', 'their' ], // Wycliffe’s Bible, 1382
+      [ 'one', 'one', 'one\'s' ], // 1400s
+      [ 'e', 'em', 'es' ], // The Writer, September 1889
+      [ 'thon', 'thon', 'thon\'s' ], // The Writer, January 1890
+      [ 'hir', 'hir', 'hirs' ], // Sacramento Bee, c1910
+      [ 'ae', 'aer', 'aes' ], // A Voyage to Arcturus, 1920
+    ];
+    let pronoun = '';
+
+    if (
+      (
+        genderIdentity.presentation !== null &&
+        typeof(genderIdentity.presentation) !== 'undefined' &&
+        genderIdentity.presentation.name === 'non-binary' &&
+        Math.random() < 0.9
+      ) ||
+      (
+        genderIdentity.sexuality !== null ||
+        genderIdentity.presentation !== null
+      ) && Math.random() < 0.125 ||
+      Math.random() < 0.0025
+    ) {
+      const index = Math.trunc(Math.random() * neutral.length);
+      pronoun = neutral[index];
+    } else if (gender.name.toUpperCase()[0] === 'M') {
+      pronoun = [ 'he', 'him', 'his' ];
+    } else {
+      pronoun = [ 'she', 'her', 'hers' ];
+    }
+
+    return pronoun;
   }
 
   getRandomNameForCitizenOf(country, gender, uiNames) {
