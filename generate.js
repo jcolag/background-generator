@@ -6,11 +6,11 @@ const Data = require('./data');
 const data = new Data();
 
 const personalityTraits = [
-  { high: 'introverted', low: 'extraverted' },
-  { high: 'agreeable', low: 'disagreeable' },
-  { high: 'neurotic', low: 'emotionally stable' },
-  { high: 'conscientious', low: 'free-spirited' },
-  { high: 'open to experience', low: 'narrow-minded' },
+  { high: 'outgoing', low: 'reserved', name: 'extraversion' },
+  { high: 'friendly', low: 'critical', name: 'agreeableness' },
+  { high: 'nervous', low: 'confidant', name: 'neuroticism' },
+  { high: 'organized', low: 'careless', name: 'exactitude' },
+  { high: 'curious', low: 'cautious', name: 'openness' },
 ];
 
 class PeopleGenerator {
