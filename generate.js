@@ -8,7 +8,7 @@ const data = new Data();
 const personalityTraits = [
   { high: 'outgoing', low: 'reserved', name: 'extraversion' },
   { high: 'friendly', low: 'critical', name: 'agreeableness' },
-  { high: 'nervous', low: 'confidant', name: 'neuroticism' },
+  { high: 'nervous', low: 'confident', name: 'neuroticism' },
   { high: 'organized', low: 'careless', name: 'exactitude' },
   { high: 'curious', low: 'cautious', name: 'openness' },
 ];
