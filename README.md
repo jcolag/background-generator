@@ -70,14 +70,17 @@ Note that:
 Given a country, the code then uses the JSON conversion of the [CIA World Factbook](https://github.com/iancoleman/cia_world_factbook_api) and other data to create a random skeletal background for the target person based on the country, including:
 
  * Age range
- * Gender Identity and Sexuality
+ * Gender Identity and Sexuality, including pronouns
+   * Only non-gender or third-gender pronouns that can be found in public domain sources have been used.
+   * In addition to non-binary people, based loosely on a [2020 survey](https://www.thetrevorproject.org/2020/07/29/research-brief-pronouns-usage-among-lgbtq-youth/), one eighth of all LGBTQ people will use non-binary pronouns.
+   * In addition to LGBTQ people, one quarter of one percent of everyone else also opts for non-binary pronouns, because there's some anecdotal evidence of that happening for various reasons.
  * Religion
  * Ethnicity
  * Literacy
  * Average Skin Tone for the Region
  * Languages Spoken
  * Physical impairments and psychological disorders
- * A randomly-generated name
+ * A randomly-generated name, for countries where someone has provided data
 
 Because the data is on the national level, the religion, ethnicity, and language information do *not* necessarily correlate appropriately with each other or with location.  For example, imagine a person with the following details.
 
@@ -95,8 +98,8 @@ Likewise, there isn't official, compiled reporting on non-binary gender populati
 
 Names are only the barest recommendation, relying on the data (but not the API, to prevent overloading their servers) for [UINames](https://uinames.com/), which can be found [here](https://raw.githubusercontent.com/thm/uinames/master/names.json) and proposed contributions (available under the [MIT License](https://opensource.org/licenses/MIT)) and should probably be refreshed periodically as the maintainers add countries and names.  Note that UINames only currently supports given name/surname pairs (reversed, for many East Asian countries) and knows nothing about different forms of name, and of course carries the same culture-blindness as the ethnicity/religion estimates.  In this case, "Diego Montes" sounds plausible, but in some cases, a name might be ignoring long-standing traditions and come off as insensitive or tone deaf.  As an obvious example for English speakers, it's possible to generate a name like "Thomas Thomas" in several countries, even though that would be a highly unlikely combination.
 
-At some point, it might be worth investigating how to navigate and parse Wiktionary's [names by language](https://en.wiktionary.org/wiki/Category:Names_subcategories_by_language) category.  It would probably require another layer of mapping data and a fair amount of work, but would improve the chances of names sounding credible to native ears.
+At some point, it might be worth investigating how to navigate and parse Wiktionary's [names by language](https://en.wiktionary.org/wiki/Category:Names_subcategories_by_language) category.  It would probably require another layer of mapping data and a fair amount of work, but would improve the chances of names sounding credible to native ears by drawing all components of a name from the same "language."  That is, while I wouldn't be confident in any Indian name that **CPREP** currently generates, I'd be willing to assume that ಮಹಾದೇವ ಕೃಷ್ಣ (Mahadeva Krishna) *is* probably reasonable, because I chose the given name and surname from Kannada lists.
 
-In cases where the writing system isn't strictly the Latin alphabet, the name will also be transliterated, shown along the lines of `"康 肖" (Kang  Xiao)`.  Like many aspects, here, it's not advisable to take those results as anything more than a starting point, specifically since transliterations of Semitic languages won't include most vowels and the transliteration library doesn't seem to care about any difference between Chinese logograms and Japanese kanji, producing unpleasant results there---`"مهسا حسنی" (mhs Hsny)` (should be *Mahsa Hassani*) or `"直子 高橋" (Zhi Zi  Gao Qiao)` (should be *Naoko Takahashi*)---and probably in other writing systems that I haven't noticed.
+In cases where the writing system isn't strictly the Latin alphabet, the name will also be transliterated, shown along the lines of `"康 肖" (Kang  Xiao)`.  Like many aspects, here, it's not advisable to take those results as anything more than a starting point, specifically since transliterations of Semitic languages won't include most vowels and the transliteration library doesn't seem to care about any difference between Chinese logograms and Japanese kanji, producing unpleasant results there---`"مهسا حسنی" (mhs Hsny)` (would ideally be *Mahsa Hassani* or similar) or `"直子 高橋" (Zhi Zi  Gao Qiao)` (should be the wildly different *Naoko Takahashi*)---and probably in other writing systems that I haven't noticed.
 
-For the personalities, the code simply picks a random day of the year (always 1999 to avoid leap years) and a random year out of the twelve-year Chinese cycle.  Personality keywords are based on astrological interpretations, so---obviously---your mileage may vary.  You can make fun if you like, but it's a straightforward system that turns a couple of numbers into a set of categories a person is supposed to fit.
+For the personalities, the code simply picks a random day of the year (always 1999 to avoid leap years) and a random year out of the twelve-year Chinese cycle.  Personality keywords are based on astrological interpretations, so---obviously---your mileage may vary.  You can make fun of astrology as much as you like, but it's a straightforward system in the public domain that turns a couple of numbers into a set of categories that a person is supposed to fit, which is *perfect* for this sort of project.  If that doesn't work for you, though, I also added something like a [Big Five](https://en.wikipedia.org/wiki/Big_Five_personality_traits) map; none of the writing on it is in the public domain, but it's sufficiently fact-based and the use is small enough that I wouldn't consider fifteen terms coverable by copyright.
