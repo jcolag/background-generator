@@ -658,11 +658,15 @@ class PeopleGenerator {
   getPronoun(gender, genderIdentity) {
     const neutral = [
       [ 'they', 'them', 'their' ], // Wycliffe’s Bible, 1382
+      [ 'a', 'am', 'ar' ], // John of Trevisa, 1300s
       [ 'one', 'one', 'one\'s' ], // 1400s
+      [ 'ou', 'oun', 'ous' ] // c1789
       [ 'e', 'em', 'es' ], // The Writer, September 1889
       [ 'thon', 'thon', 'thon\'s' ], // The Writer, January 1890
       [ 'hir', 'hir', 'hirs' ], // Sacramento Bee, c1910
       [ 'ae', 'aer', 'aes' ], // A Voyage to Arcturus, 1920
+      [ 'ze', 'zem', 'zir' ], // Seemingly used in White Marble Block
+                              // role-playing books, though seemingly c1996
     ];
     let pronoun = '';
 
@@ -677,7 +681,7 @@ class PeopleGenerator {
         genderIdentity.sexuality !== null ||
         genderIdentity.presentation !== null
       ) && Math.random() < 0.125 ||
-      Math.random() < 0.0025
+      Math.random() < 0.0025 // People may pick non-conforming pronouns
     ) {
       const index = Math.trunc(Math.random() * neutral.length);
       pronoun = neutral[index];
