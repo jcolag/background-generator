@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Surabhi Rathore</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/style.css"
+    >
+    
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="/css/footer.css"
+      >
+    
+    <link
+      href='https://fonts.googleapis.com/css?family=Open+Sans:300'
+      rel='stylesheet'
+      type='text/css'
+    >
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <script>
+      window.onload = function() {
+        var citiesJson = "[{&#34;name&#34;:&#34;Olpād&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.33649,&#34;longitude&#34;:72.75161,&#34;distance&#34;:&#34;11.19km&#34;},{&#34;name&#34;:&#34;Hansot&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.58496,&#34;longitude&#34;:72.80764,&#34;distance&#34;:&#34;17.892km&#34;},{&#34;name&#34;:&#34;Sūrat&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.19594,&#34;longitude&#34;:72.83023,&#34;distance&#34;:&#34;20.941km&#34;},{&#34;name&#34;:&#34;Amroli&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.25084,&#34;longitude&#34;:72.83878,&#34;distance&#34;:&#34;21.282km&#34;},{&#34;name&#34;:&#34;Utrān&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.23333,&#34;longitude&#34;:72.86667,&#34;distance&#34;:&#34;24.426km&#34;}]"
+          .replace(/&#34;/g, '"');
+        var cities = JSON.parse(citiesJson);
+        var map = L
+          .map('map')
+          .setView([21,73], 13);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'pk.eyJ1IjoiamNvbGFnIiwiYSI6ImNrN2NlMzFpdDAwMXEzcXBpbTZ4NWVvOHAifQ.G16Z_PxmvCPdomh7cXUcUA'
+        }).addTo(map);
+        var marker = L.marker([21,73])
+          .addTo(map)
+          .bindPopup('21N 73E')
+          .openPopup();
+        var markers = [marker];
+        for (var i=0; i<cities.length; i++) {
+          var city = cities[i];
+          var circle = L.circle([city.latitude, city.longitude], {
+            color: '#b780a0',
+            fillColor: '#95557a',
+            fillOpacity: 0.5,
+            radius: 100 * Number(city.distance.replace('km', '')),
+          }).addTo(map);
+          var clat = Math.abs(city.latitude).toString() + (
+            city.latitude < 0 ? 'S' : 'N'
+          );
+          var clon = Math.abs(city.longitude).toString() + (
+            city.longitude < 0 ? 'W' : 'E'
+          );
+          circle.bindPopup(`${city.name}<br>${clat} ${clon}`);
+          markers.push(circle);
+        }
+        var group = L.featureGroup(markers);
+        map.fitBounds(group.getBounds());
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      
+      <h1>Surabhi Rathore</h1>
+      <h2>Approximate Location 🌏</h2>
+      With coordinates at 21N 73E,
+      
+        Surabhi Rathore
+      
+      (they/them/their)
+      is likely from 🇮🇳 India
+      
+        (Republic of India/Bharatiya Ganarajya)
+      ,
+      country code 356.
+      <div id="map"></div>
+      <h3>Nearest Cities</h3>
+      From 21N 73E, the closest
+      five cities found in the database are...
+      <br>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Lat</th>
+          <th>Long</th>
+          <th>Country</th>
+          <th>District</th>
+          <th>Distance</th>
+        </tr>
+        
+          <tr>
+            <td>Olpād</td>
+            <td class="cell-num">21.33649°</td>
+            <td class="cell-num">72.75161°</td>
+            <td>
+              IN
+              🇮🇳
+            </td>
+            <td>09</td>
+            <td>11.19km</td>
+          </tr>
+        
+          <tr>
+            <td>Hansot</td>
+            <td class="cell-num">21.58496°</td>
+            <td class="cell-num">72.80764°</td>
+            <td>
+              IN
+              🇮🇳
+            </td>
+            <td>09</td>
+            <td>17.892km</td>
+          </tr>
+        
+          <tr>
+            <td>Sūrat</td>
+            <td class="cell-num">21.19594°</td>
+            <td class="cell-num">72.83023°</td>
+            <td>
+              IN
+              🇮🇳
+            </td>
+            <td>09</td>
+            <td>20.941km</td>
+          </tr>
+        
+          <tr>
+            <td>Amroli</td>
+            <td class="cell-num">21.25084°</td>
+            <td class="cell-num">72.83878°</td>
+            <td>
+              IN
+              🇮🇳
+            </td>
+            <td>09</td>
+            <td>21.282km</td>
+          </tr>
+        
+          <tr>
+            <td>Utrān</td>
+            <td class="cell-num">21.23333°</td>
+            <td class="cell-num">72.86667°</td>
+            <td>
+              IN
+              🇮🇳
+            </td>
+            <td>09</td>
+            <td>24.426km</td>
+          </tr>
+        
+      </table>
+      <h3>General Information</h3>
+      <figure style="float: right; width: 25%;">
+        <img src="./images/headshot.svg" style="width: 100%;">
+        <figcaption style="font-size: medium;">
+          Possible rough appearance for
+          Surabhi Rathore.
+        </figcaption>
+      </figure>
+      They
+      is probably
+      
+      
+      Female
+      (♀),
+      
+      age 15 to 24.
+      Like
+      
+        approximately 79.8%
+        of the country,
+        they
+        are
+        or practice
+        some form of
+        Hindu
+        
+          (🕉️)
+        
+        and like
+      
+      72% of the country, identifies
+      as Indo-Aryan.  In the region, the average
+      skin color tends to be roughly similar to
+      <span
+        class="swatch"
+        style="background-color: #DFC17B;"
+      >
+        <code>#DFC17B</code>
+      </span>
+      or
+      <span
+        class="swatch"
+        style="background-color: #EEC479;"
+      >
+        <code>#EEC479</code>
+      </span>
+      👋🏻.
+      <br>
+      
+      
+      
+        
+          They
+          are
+        
+        coping with 🧠
+        
+        
+          Post-Traumatic Stress Disorder (3.5%).
+        
+      
+      <br>
+      
+      
+        They
+        speak
+        
+        
+          Hindi (43.6%), Marathi (6.9%)
+          and Urdu (4.2%)
+        
+      
+      
+        and
+        are
+        also
+      
+      
+        literate (65.8%).
+      
+      <h3>Possible Personality</h3>
+      <p>
+        The following traits are arbitrarily ordered as to which is the
+        &ldquo;high&rdquo; and &ldquo;low&rdquo; ends of the spectrum.
+        Negative numbers only mean that the scale is closer to the item
+        on the left-hand side of the table.
+      </p>
+      <table>
+      
+        <tr>
+          <th>
+            reserved
+          </th>
+          <td style="width: 200px; text-align: center; background: linear-gradient(to right, #b1a296 80.5%, transparent 90.5%);">
+            extraversion:&nbsp;71
+          </td>
+          <th>
+            outgoing
+          </th>
+        </tr>
+      
+        <tr>
+          <th>
+            critical
+          </th>
+          <td style="width: 200px; text-align: center; background: linear-gradient(to right, #b1a296 25.5%, transparent 35.5%);">
+            agreeableness:&nbsp;-39
+          </td>
+          <th>
+            friendly
+          </th>
+        </tr>
+      
+        <tr>
+          <th>
+            confident
+          </th>
+          <td style="width: 200px; text-align: center; background: linear-gradient(to right, #b1a296 20%, transparent 30%);">
+            neuroticism:&nbsp;-50
+          </td>
+          <th>
+            nervous
+          </th>
+        </tr>
+      
+        <tr>
+          <th>
+            careless
+          </th>
+          <td style="width: 200px; text-align: center; background: linear-gradient(to right, #b1a296 76%, transparent 86%);">
+            exactitude:&nbsp;62
+          </td>
+          <th>
+            organized
+          </th>
+        </tr>
+      
+        <tr>
+          <th>
+            cautious
+          </th>
+          <td style="width: 200px; text-align: center; background: linear-gradient(to right, #b1a296 83%, transparent 93%);">
+            openness:&nbsp;76
+          </td>
+          <th>
+            curious
+          </th>
+        </tr>
+      
+      </table>
+      <p>
+        The following is loosely based on astrological signs to provide a
+        rough sketch, help narrow down age (if desired), and provide
+        provide a birthday.  In this case, &ldquo;Surabhi Rathore&rdquo;
+        was born on
+        January
+        27
+        (Aquarius ♒ 🏺
+        ),
+        in the year of the
+        Sheep 未 🐑
+        (2004).
+      </p>
+      <p>
+      Friends tend to describe them with words like:
+      
+      
+        
+        
+          
+        
+        
+        
+          
+        
+        Conceptual, 
+      
+        
+        
+        
+        
+          
+        
+        dependable, 
+      
+        
+        
+        
+        
+          
+        
+        expressive, 
+      
+        
+        
+        
+        
+          
+        
+        gentle, 
+      
+        
+        
+        
+        
+          
+        
+        good at planning, 
+      
+        
+        
+        
+        
+          
+        
+        inflexible, 
+      
+        
+        
+        
+        
+          
+        
+        intelligent, 
+      
+        
+        
+        
+        
+          
+        
+        logical, 
+      
+        
+        
+        
+        
+          
+        
+        loving, 
+      
+        
+        
+        
+        
+          
+        
+        methodical, 
+      
+        
+        
+        
+        
+          
+        
+        objective, 
+      
+        
+        
+        
+        
+          
+        
+        practical, 
+      
+        
+        
+        
+        
+          
+        
+        quiet, 
+      
+        
+        
+        
+        
+          
+        
+        resistant to change, 
+      
+        
+        
+        
+        
+          
+        
+        serious, 
+      
+        
+        
+        
+        
+          
+        
+        social, 
+      
+        
+        
+        
+        
+          
+        
+        strong, 
+      
+        
+        
+        
+        
+          
+        
+        strong-willed, 
+      
+        
+        
+        
+        
+          
+        
+        and thoughtful.
+      
+      </p>
+      <p>
+      Additionally, we're told that:
+      The earth person is serious, logical and methodical, intelligent, objective and good at planning. The direction associated with Earth is Center. The season for Earth is the changeover point of the four seasons. It is the fixed element for the animal signs Ox, Dragon, Goat and Dog.
+      </p>
+      <h3>More Information</h3>
+      <p>
+        <small>Please see
+        <a href="https://github.com/jcolag/background-generator">
+          the project README
+        </a>
+        for an attempt to explain all the details that look strange.
+        There are a <i>lot</i> of caveats, here, even ignoring the
+        terrible templated grammar.
+      </p>
+      <hr>
+      If you want to save the data for this person, the following is the
+      JSON object used to fill in the above.
+      <textarea>
+{
+  "latitude": "21N",
+  "longitude": "73E",
+  "coordinates": [
+    21,
+    73
+  ],
+  "globe": "🌏",
+  "country": "India",
+  "flag": "🇮🇳",
+  "countryCode": "356",
+  "cities": [
+    {
+      "name": "Olpād",
+      "adminCode": "09",
+      "country": "IN",
+      "latitude": 21.33649,
+      "longitude": 72.75161,
+      "distance": "11.19km"
+    },
+    {
+      "name": "Hansot",
+      "adminCode": "09",
+      "country": "IN",
+      "latitude": 21.58496,
+      "longitude": 72.80764,
+      "distance": "17.892km"
+    },
+    {
+      "name": "Sūrat",
+      "adminCode": "09",
+      "country": "IN",
+      "latitude": 21.19594,
+      "longitude": 72.83023,
+      "distance": "20.941km"
+    },
+    {
+      "name": "Amroli",
+      "adminCode": "09",
+      "country": "IN",
+      "latitude": 21.25084,
+      "longitude": 72.83878,
+      "distance": "21.282km"
+    },
+    {
+      "name": "Utrān",
+      "adminCode": "09",
+      "country": "IN",
+      "latitude": 21.23333,
+      "longitude": 72.86667,
+      "distance": "24.426km"
+    }
+  ],
+  "countryNative": "Republic of India/Bharatiya Ganarajya",
+  "gender": {
+    "name": "Female",
+    "symbol": "♀"
+  },
+  "pronoun": [
+    "they",
+    "them",
+    "their"
+  ],
+  "age": "15 to 24",
+  "denomination": {
+    "emoji": "🕉️",
+    "name": "Hindu",
+    "population": 79.8
+  },
+  "ethnicity": {
+    "name": "Indo-Aryan",
+    "population": 72
+  },
+  "candidateName": {
+    "native": "Surabhi Rathore"
+  },
+  "skinColor": {
+    "color": "#DFC17B",
+    "emoji": "👋🏻"
+  },
+  "skinColorFixed": "#EEC479",
+  "physicalImpairments": [],
+  "psychologicalImpairments": [],
+  "literacy": "65.8%",
+  "languages": [
+    {
+      "name": "Hindi",
+      "population": 43.6
+    },
+    {
+      "name": "Marathi",
+      "population": 6.9
+    }
+  ],
+  "personalityTraits": [
+    {
+      "high": "outgoing",
+      "low": "reserved",
+      "name": "extraversion",
+      "strength": 171
+    },
+    {
+      "high": "friendly",
+      "low": "critical",
+      "name": "agreeableness",
+      "strength": 61
+    },
+    {
+      "high": "nervous",
+      "low": "confident",
+      "name": "neuroticism",
+      "strength": 50
+    },
+    {
+      "high": "organized",
+      "low": "careless",
+      "name": "exactitude",
+      "strength": 162
+    },
+    {
+      "high": "curious",
+      "low": "cautious",
+      "name": "openness",
+      "strength": 176
+    }
+  ]
+}
+      </textarea>
+    </div>
+
+    
+      <br>
+      <div class="container">
+        <hr>
+        <!-- insert footer information here -->
+Thanks to
+<a
+  class='host-link'
+  href='https://colagioia.net'
+  title='Colagioia Industries'
+>
+  <img
+    class='host-logo'
+    src='https://colagioia.net/images/ColagioiaIndustries.png'
+  >
+</a>
+for hosting and bandwidth!
+
+      </div>
+    
+  </body>
+</html>
