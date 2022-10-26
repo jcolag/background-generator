@@ -31,48 +31,9 @@
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""
     ></script>
-    <script>
-      window.onload = function() {
-        var citiesJson = "[{&#34;name&#34;:&#34;Olpād&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.33649,&#34;longitude&#34;:72.75161,&#34;distance&#34;:&#34;11.19km&#34;},{&#34;name&#34;:&#34;Hansot&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.58496,&#34;longitude&#34;:72.80764,&#34;distance&#34;:&#34;17.892km&#34;},{&#34;name&#34;:&#34;Sūrat&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.19594,&#34;longitude&#34;:72.83023,&#34;distance&#34;:&#34;20.941km&#34;},{&#34;name&#34;:&#34;Amroli&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.25084,&#34;longitude&#34;:72.83878,&#34;distance&#34;:&#34;21.282km&#34;},{&#34;name&#34;:&#34;Utrān&#34;,&#34;adminCode&#34;:&#34;09&#34;,&#34;country&#34;:&#34;IN&#34;,&#34;latitude&#34;:21.23333,&#34;longitude&#34;:72.86667,&#34;distance&#34;:&#34;24.426km&#34;}]"
-          .replace(/&#34;/g, '"');
-        var cities = JSON.parse(citiesJson);
-        var map = L
-          .map('map')
-          .setView([21,73], 13);
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          id: 'mapbox/streets-v11',
-          tileSize: 512,
-          zoomOffset: -1,
-          accessToken: 'pk.eyJ1IjoiamNvbGFnIiwiYSI6ImNrN2NlMzFpdDAwMXEzcXBpbTZ4NWVvOHAifQ.G16Z_PxmvCPdomh7cXUcUA'
-        }).addTo(map);
-        var marker = L.marker([21,73])
-          .addTo(map)
-          .bindPopup('21N 73E')
-          .openPopup();
-        var markers = [marker];
-        for (var i=0; i<cities.length; i++) {
-          var city = cities[i];
-          var circle = L.circle([city.latitude, city.longitude], {
-            color: '#b780a0',
-            fillColor: '#95557a',
-            fillOpacity: 0.5,
-            radius: 100 * Number(city.distance.replace('km', '')),
-          }).addTo(map);
-          var clat = Math.abs(city.latitude).toString() + (
-            city.latitude < 0 ? 'S' : 'N'
-          );
-          var clon = Math.abs(city.longitude).toString() + (
-            city.longitude < 0 ? 'W' : 'E'
-          );
-          circle.bindPopup(`${city.name}<br>${clat} ${clon}`);
-          markers.push(circle);
-        }
-        var group = L.featureGroup(markers);
-        map.fitBounds(group.getBounds());
-      }
-    </script>
+    <script src="./generate.js"></script>
+    <script src="./personality.js"></script>
+    <script src="./run.js"></script>
   </head>
   <body>
     <div class="container">
