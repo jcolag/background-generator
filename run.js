@@ -1,3 +1,11 @@
+let ciafact = null;
+let countries = null;
+let country3166 = null;
+let luschan = null;
+let population = null;
+let skinTones = null;
+let uiNames = null;
+
 window.onload = function() {
   var citiesJson = "[{&#34;name&#34;:&#34;Alexandria&#34;,&#34;adminCode&#34;:&#34;06&#34;,&#34;country&#34;:&#34;EG&#34;,&#34;latitude&#34;:31.20176,&#34;longitude&#34;:29.91582,&#34;distance&#34;:&#34;48.332km&#34;},{&#34;name&#34;:&#34;Kafr ad Dawwār&#34;,&#34;adminCode&#34;:&#34;03&#34;,&#34;country&#34;:&#34;EG&#34;,&#34;latitude&#34;:31.13379,&#34;longitude&#34;:30.12969,&#34;distance&#34;:&#34;63.698km&#34;},{&#34;name&#34;:&#34;Idkū&#34;,&#34;adminCode&#34;:&#34;03&#34;,&#34;country&#34;:&#34;EG&#34;,&#34;latitude&#34;:31.3073,&#34;longitude&#34;:30.2981,&#34;distance&#34;:&#34;64.625km&#34;},{&#34;name&#34;:&#34;Rosetta&#34;,&#34;adminCode&#34;:&#34;03&#34;,&#34;country&#34;:&#34;EG&#34;,&#34;latitude&#34;:31.39951,&#34;longitude&#34;:30.41718,&#34;distance&#34;:&#34;71.964km&#34;},{&#34;name&#34;:&#34;Abū al Maţāmīr&#34;,&#34;adminCode&#34;:&#34;03&#34;,&#34;country&#34;:&#34;EG&#34;,&#34;latitude&#34;:30.91018,&#34;longitude&#34;:30.17438,&#34;distance&#34;:&#34;84.831km&#34;}]"
     .replace(/&#34;/g, '"');
