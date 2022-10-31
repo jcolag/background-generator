@@ -58,3 +58,22 @@ window.onload = function() {
   map.fitBounds(group.getBounds());
 }
 
+function processFile(filename, bytes) {
+  const decoder = new TextDecoder('utf-8');
+  const json = decoder.decode(jsonBytes);
+  const idxFilename = externalFiles.indexOf(filename);
+
+  // Remove file from list.
+  externalFiles = externalFiles.splice(idxFilename, 1);
+
+  // Process the file based on its name.
+
+  // Continue, if possible.
+  if (externalFiles.length === 0) {
+    generatePeople();
+  }
+}
+
+function generatePeople() {
+}
+
