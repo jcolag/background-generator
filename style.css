@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'Alfa Slab';
+  src: url('/public/fonts/AlfaSlabOne-Regular.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/public/fonts/Lora-Regular.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+  background: url('/public/images/woodgrain.png');
+  background-color: #7395ae;
+  color: #5d5c61;
+  font-family: 'Lora';
+  font-size: 36px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #b1a296;
+  font-family: 'Alfa Slab';
+}
+
+table {
+  border: 1px solid #557a95;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td {
+  border: 1px solid #557a95;
+}
+
+table th {
+  background-color: #557a95;
+  border: 1px solid #557a95;
+  color: #7395ae;
+}
+
+tr:nth-child(odd) {
+  background-color: #5d5c61;
+  color: #7395ae;
+}
+
+.container {
+  margin-left: 20%;
+  width: 60vw;
+}
+
+.cell-num {
+  text-align: right;
+}
+
+.swatch {
+  border: 1px solid #b1a296;
+  border-radius: 0.75em;
+  display: inline-block;
+  height: 1em;
+  min-width: 2em;
+  padding-bottom: 0.25em;
+}
+
+.hostinfo {
+  height: 72px;
+  line-height: 72px;
+  text-align: center;
+}
+
+.hostinfo span {
+  display: inline-block;
+  line-height: 72px;
+  margin-bottom: 56px;
+  vertical-align: middle;
+}
+
+.hostlogo {
+  height: 72px;
+}
+
+#map {
+  height: 60vw;
+  width: 100%;
+}
