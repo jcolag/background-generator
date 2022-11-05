@@ -58,6 +58,13 @@ window.onload = function() {
   map.fitBounds(group.getBounds());
 }
 
+function unrollFile(filename, response) {
+  response.arrayBuffer()
+    .then((bytes) => {
+      processFile(filename, bytes);
+    });
+}
+
 function processFile(filename, bytes) {
   const decoder = new TextDecoder('utf-8');
   const json = decoder.decode(bytes);
