@@ -16,6 +16,15 @@ const files = {
   skinTones: 'skintones.csv',
   uiNames: 'names.json',
 };
+const fileIds = {
+  'factbook': 'ciafact',
+  'country_deg': 'countries',
+  'country-3166-1': 'countries3166',
+  'vonluschan': 'luschan',
+  'population_density_deg': 'population',
+  'skintones': 'skinTones',
+  'names': 'uiNames',
+}
 
 window.onload = function() {
   externalFiles.forEach((f) => {
