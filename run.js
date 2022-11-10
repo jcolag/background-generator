@@ -82,8 +82,11 @@ function unrollFile(filename, response) {
 
 function processFile(filename, bytes) {
   const decoder = new TextDecoder('utf-8');
-  const json = decoder.decode(bytes);
+  const text = decoder.decode(bytes);
   const idxFilename = externalFiles.indexOf(filename);
+  const basename = filename.split('.')[0];
+  const extension = filename.split('.')[1];
+  const key = fileIds[basename];
 
   // Remove file from list.
   externalFiles.splice(idxFilename, 1);
