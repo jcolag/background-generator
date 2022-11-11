@@ -92,6 +92,9 @@ function processFile(filename, bytes) {
   externalFiles.splice(idxFilename, 1);
 
   // Process the file based on its name.
+  if (extension === 'json') {
+    files[key] = JSON.parse(text);
+  }
 
   // Continue, if possible.
   if (externalFiles.length === 0) {
