@@ -94,6 +94,15 @@ function processFile(filename, bytes) {
   // Process the file based on its name.
   if (extension === 'json') {
     files[key] = JSON.parse(text);
+  } else if (extension === 'csv') {
+    const result = [];
+    const lines = text.split('\n');
+
+    for (let i = 0; i < lines.length; i++) {
+      result.push(lines[i].split(','));
+    }
+
+    files[key] = result;
   }
 
   // Continue, if possible.
