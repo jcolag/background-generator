@@ -15,7 +15,7 @@ class HeadshotGenerator {
       + `      fill: ${skintone};\n      stroke: currentColor;\n`
       + '      stroke-linecap: round;\n      stroke-linejoin: round;\n'
       + '      stroke-width: 2;\n    }\n  </style>\n';
-    const foot = '\n  "/>\n</svg>';
+    const foot = '\n</svg>';
     const multiplier = size / 20;
 
     // crown, parietus, temple, cheek, jaw
