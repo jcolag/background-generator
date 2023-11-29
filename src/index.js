@@ -16,6 +16,9 @@ class PeopleGenerator {
     country_deg,
     vl,
     st,
+    cia,
+    uinames,
+    c3166,
     people = 1
   ) {
     // This looks intimidating, but it's just gathering all the data,
@@ -31,7 +34,7 @@ class PeopleGenerator {
     // available under CC-BY-SA 4.0 International
     const luschan = vl;
     var skinTones = st;
-    const ciafact = JSON.parse(fs.readFileSync('factbook.json'));
+    const ciafact = cia;
     const countrycodes = {};
     const skinTonesR = skinTones.reverse().slice(1);
     const skinMaxX = Number(skinTonesR[0][0]) + 1;
@@ -39,7 +42,7 @@ class PeopleGenerator {
     const skinRatioX = skinMaxX / countries[0].length;
     const skinRatioY = skinMaxY / countries.length;
     const skinToneMap = [];
-    const uiNames = JSON.parse(fs.readFileSync('names.json').toString());
+    const uiNames = uinames;
 
     luschan.pop();
     for (let cidx = 0; cidx < luschan.length; cidx++) {
@@ -99,13 +102,7 @@ class PeopleGenerator {
 
     const zeroLat = 86;
     const zeroLong = 181;
-
-    // We may want to ignore the upper latitudes for some projects.
-    let maxLat = 86;
-
-    if (process.argv.length > 3) {
-      maxLat = Number(process.argv[3]);
-    }
+    const maxLat = 86;
 
     let lat = 0;
     let long = 0;
@@ -126,10 +123,7 @@ class PeopleGenerator {
     // In addition, the French Southern Territories and United
     // States Minor Outlying Islands both have country codes, but
     // do not appear elsewhere in the data.
-    const lines = fs
-      .readFileSync('country-3166-1.csv')
-      .toString()
-      .split('\n');
+    const lines = c3166;
 
     for (let i = 0; i < lines.length; i++) {
       const parts = lines[i].split(',');
