@@ -21,10 +21,6 @@ class PeopleGenerator {
     c3166,
     people = 1
   ) {
-    // This looks intimidating, but it's just gathering all the data,
-    // calling the other methods in the class to winnow down what we
-    // have to a possible profile, and packaging those results up for
-    // the front end.
     const peopleList = [];
     const population = pop;
     const countries = country_deg;
@@ -67,10 +63,6 @@ class PeopleGenerator {
         g: g,
         b: b,
       }
-    }
-
-    if (process.argv.length > 2) {
-      people = Number(process.argv[2]);
     }
 
     // For countries, row 135 appears to map to 55S latitude, based on
