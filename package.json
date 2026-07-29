@@ -4,7 +4,7 @@
   "description": "A simple web application to provide semi-believable background details for fictional characters",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.20.5",
+    "body-parser": "^1.20.6",
     "chinese-date": "^0.0.4",
     "date-chinese": "^1.0.7",
     "ejs": "^3.1.10",
